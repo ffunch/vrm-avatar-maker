@@ -6,11 +6,15 @@ avatars are yours to use anywhere.
 
 Try it: **https://avatars.somanyrooms.com/**
 
+![The maker: ready-made avatars on the left, the avatar on the right](docs/editor.jpg)
+
 It was made for meeting avatars in [So Many Rooms](https://somanyrooms.com), so every download fits
 a modest budget (at most 40,000 triangles, 16 materials, 2048 px textures, 20 MB) and sits well in a
 chair. Any app that reads VRM 1.0 can use them.
 
 ## What you get
+
+![Ten of the ready-made avatars, from office clothes to wizard robes and a space suit](docs/avatars.jpg)
 
 - **A real person, not anime.** Bodies, skins and clothes come from the MakeHuman community's CC0
   assets, fitted live in the browser as you move the sliders.

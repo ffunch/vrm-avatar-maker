@@ -371,10 +371,13 @@ def export_item(relative, slug, category, cutout=None, base=None):
     if texture:  # relative to the .mhmat file (eyes keep theirs in ../materials/)
         candidates = [os.path.join(os.path.dirname(material), texture), os.path.join(folder, texture)]
         found = next((c for c in candidates if os.path.isfile(c)), None)
-        branded = os.path.join(REPO, "assets", "plain", slug + ".png")  # make_plain_shirts.py: logo covered
+        # Replacement textures: assets/branded (a site's own mark, make_branded_shirts.py; not in the
+        # public repo), else assets/plain (MakeHuman's logo covered, make_plain_shirts.py).
+        replaced = next((r for r in (os.path.join(REPO, "assets", d, slug + ".png") for d in ("branded", "plain"))
+                         if os.path.isfile(r)), None)
         painted = os.path.join(REPO, "assets", "painted", slug + ".png")  # paint_garments.py: our own designs
-        if found and os.path.isfile(branded):
-            found = branded
+        if found and replaced:
+            found = replaced
         elif base and os.path.isfile(painted):
             found = painted
         if found:
@@ -386,9 +389,11 @@ def export_item(relative, slug, category, cutout=None, base=None):
         thumbs = []  # a trimmed copy (goatee from a long beard): the original's picture would mislead
     if base:
         thumbs = []  # a painted copy: the original's picture would mislead
-    branded_thumb = os.path.join(REPO, "assets", "plain" if not base else "painted", slug + ".thumb.png")
-    if os.path.isfile(branded_thumb):
-        thumbnail(branded_thumb, os.path.join(OUT, "thumbs", slug + ".webp"))
+    folders = ("branded", "plain") if not base else ("painted",)
+    own_thumb = next((t for t in (os.path.join(REPO, "assets", d, slug + ".thumb.png") for d in folders)
+                      if os.path.isfile(t)), None)
+    if own_thumb:
+        thumbnail(own_thumb, os.path.join(OUT, "thumbs", slug + ".webp"))
     elif thumbs:
         thumbnail(os.path.join(original_folder, thumbs[0]), os.path.join(OUT, "thumbs", slug + ".webp"))
     json.dump({"name": fit.get("name", slug), "kind": category, "cutout": cutout, "layout": layout,
