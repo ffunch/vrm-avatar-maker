@@ -1,0 +1,1064 @@
+{
+ "categories": {
+  "hair": {
+   "label": "Hair",
+   "none": "Bald",
+   "items": [
+    {
+     "id": "short02",
+     "label": "Short, side part",
+     "triangles": 3344,
+     "thumb": true
+    },
+    {
+     "id": "short01",
+     "label": "Short, swept",
+     "triangles": 3678,
+     "thumb": true
+    },
+    {
+     "id": "short03",
+     "label": "Short, rounded",
+     "triangles": 1922,
+     "thumb": true
+    },
+    {
+     "id": "short04",
+     "label": "Short, cropped",
+     "triangles": 1050,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hair_05",
+     "label": "Short, layered",
+     "triangles": 4948,
+     "thumb": true
+    },
+    {
+     "id": "cortu_short_messy_hair",
+     "label": "Short, messy",
+     "triangles": 1092,
+     "thumb": true
+    },
+    {
+     "id": "afro01",
+     "label": "Afro",
+     "triangles": 2192,
+     "thumb": true
+    },
+    {
+     "id": "cortu_strawberry_cloud_hair",
+     "label": "Curly",
+     "triangles": 576,
+     "thumb": true
+    },
+    {
+     "id": "cortu_shaggy_green_hair",
+     "label": "Shaggy",
+     "triangles": 1284,
+     "thumb": true
+    },
+    {
+     "id": "bob02",
+     "label": "Bob",
+     "triangles": 2248,
+     "thumb": true
+    },
+    {
+     "id": "bob01",
+     "label": "Bob, long",
+     "triangles": 4236,
+     "thumb": true
+    },
+    {
+     "id": "toigo_blunt_bob",
+     "label": "Bob, blunt",
+     "triangles": 2858,
+     "thumb": true
+    },
+    {
+     "id": "toigo_blunt_bob_with_bangs",
+     "label": "Bob, blunt with bangs",
+     "triangles": 4976,
+     "thumb": true
+    },
+    {
+     "id": "toigo_curled_under_bob",
+     "label": "Bob, curled under",
+     "triangles": 2852,
+     "thumb": true
+    },
+    {
+     "id": "toigo_curled_under_bob_with_bangs",
+     "label": "Bob, curled with bangs",
+     "triangles": 4976,
+     "thumb": true
+    },
+    {
+     "id": "toigo_inverted_bob",
+     "label": "Bob, inverted",
+     "triangles": 2856,
+     "thumb": true
+    },
+    {
+     "id": "toigo_inverted_bob_with_bangs",
+     "label": "Bob, inverted with bangs",
+     "triangles": 4996,
+     "thumb": true
+    },
+    {
+     "id": "cortu_straight_bangs",
+     "label": "Straight with bangs",
+     "triangles": 1128,
+     "thumb": true
+    },
+    {
+     "id": "faydaen_hair_1",
+     "label": "Long, loose",
+     "triangles": 836,
+     "thumb": true
+    },
+    {
+     "id": "long01",
+     "label": "Long",
+     "triangles": 4108,
+     "thumb": true
+    },
+    {
+     "id": "ponytail01",
+     "label": "Ponytail",
+     "triangles": 5352,
+     "thumb": true
+    },
+    {
+     "id": "braid01",
+     "label": "Braid",
+     "triangles": 5518,
+     "thumb": true
+    }
+   ]
+  },
+  "eyebrows": {
+   "label": "Eyebrows",
+   "none": null,
+   "items": [
+    {
+     "id": "eyebrow001",
+     "label": "1",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow002",
+     "label": "2",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow003",
+     "label": "3",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow004",
+     "label": "4",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow005",
+     "label": "5",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow006",
+     "label": "6",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow007",
+     "label": "7",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow008",
+     "label": "8",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow009",
+     "label": "9",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow010",
+     "label": "10",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow011",
+     "label": "11",
+     "triangles": 192,
+     "thumb": true
+    },
+    {
+     "id": "eyebrow012",
+     "label": "12",
+     "triangles": 192,
+     "thumb": true
+    }
+   ]
+  },
+  "moustache": {
+   "label": "Moustache",
+   "none": "None",
+   "items": [
+    {
+     "id": "rehmanpolanski_moustache_viking",
+     "label": "Moustache",
+     "triangles": 1364,
+     "thumb": true
+    }
+   ]
+  },
+  "beard": {
+   "label": "Beard",
+   "none": "None",
+   "items": [
+    {
+     "id": "paint_beard_short",
+     "label": "Full short beard",
+     "triangles": 0,
+     "thumb": false,
+     "paint": {
+      "mask": "beard",
+      "amount": 0.95
+     }
+    },
+    {
+     "id": "paint_stubble",
+     "label": "Stubble",
+     "triangles": 0,
+     "thumb": false,
+     "paint": {
+      "mask": "beard",
+      "amount": 0.4
+     }
+    },
+    {
+     "id": "beard_goatee",
+     "label": "Goatee",
+     "triangles": 386,
+     "thumb": false
+    },
+    {
+     "id": "beard_short",
+     "label": "Jawline beard",
+     "triangles": 4368,
+     "thumb": false
+    },
+    {
+     "id": "rehmanpolanski_beard_viking",
+     "label": "Long beard",
+     "triangles": 5682,
+     "thumb": true
+    }
+   ]
+  },
+  "glasses": {
+   "label": "Glasses and masks",
+   "none": "None",
+   "items": [
+    {
+     "id": "spamrakuen_tbm_glasses_frames_01",
+     "label": "Black frames",
+     "triangles": 808,
+     "thumb": true
+    },
+    {
+     "id": "spamrakuen_sagerfrogs_glasses_01",
+     "label": "Red frames",
+     "triangles": 1284,
+     "thumb": true
+    },
+    {
+     "id": "spamrakuen_sagerfrogs_glasses_02",
+     "label": "Narrow",
+     "triangles": 1452,
+     "thumb": true
+    },
+    {
+     "id": "spamrakuen_sagerfrogs_glasses_03",
+     "label": "Half rim",
+     "triangles": 3284,
+     "thumb": true
+    },
+    {
+     "id": "spamrakuen_sagerfrogs_glasses_04",
+     "label": "Rimless",
+     "triangles": 1736,
+     "thumb": true
+    },
+    {
+     "id": "visor_band",
+     "label": "Visor",
+     "triangles": 280,
+     "thumb": true
+    },
+    {
+     "id": "visor_slit",
+     "label": "Slit visor",
+     "triangles": 280,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hero_mask_3",
+     "label": "Domino mask",
+     "triangles": 2072,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hero_mask_4",
+     "label": "Bat mask",
+     "triangles": 1636,
+     "thumb": true
+    },
+    {
+     "id": "toigo_round_glasses_leopard",
+     "label": "Round, tinted",
+     "triangles": 4396,
+     "thumb": true
+    }
+   ]
+  },
+  "hat": {
+   "label": "Hat",
+   "none": "No hat",
+   "items": [
+    {
+     "id": "fedora01",
+     "label": "Fedora",
+     "triangles": 1244,
+     "thumb": true
+    },
+    {
+     "id": "fedora_cocked",
+     "label": "Fedora, tilted",
+     "triangles": 1244,
+     "thumb": true
+    },
+    {
+     "id": "aethelraed_unraed_cloche_hat",
+     "label": "Cloche",
+     "triangles": 771,
+     "thumb": true
+    },
+    {
+     "id": "joepal_xmas_cap",
+     "label": "Santa hat",
+     "triangles": 2016,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_motorcycle_helmet",
+     "label": "Motorcycle helmet",
+     "triangles": 3122,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_warrior_helmet",
+     "label": "Dragon helmet",
+     "triangles": 2712,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_skull_helmet",
+     "label": "Horned skull helmet",
+     "triangles": 2550,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hero-heroine_hood_1",
+     "label": "Hero hood",
+     "triangles": 3004,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hero-heroine_hood_2",
+     "label": "Hero hood, two-tone",
+     "triangles": 3928,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_heroine_mask_1",
+     "label": "Devil mask",
+     "triangles": 4932,
+     "thumb": true
+    },
+    {
+     "id": "donitz_monk_robe_hood",
+     "label": "Monk hood",
+     "triangles": 3602,
+     "thumb": true
+    },
+    {
+     "id": "ours_wizard_hood",
+     "label": "Wizard hood",
+     "triangles": 3602,
+     "thumb": true
+    },
+    {
+     "id": "ours_sorcerer_hood",
+     "label": "Sorcerer hood",
+     "triangles": 3602,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_minotaur_horns",
+     "label": "Horns",
+     "triangles": 2368,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_faun_horns",
+     "label": "Faun horns",
+     "triangles": 2495,
+     "thumb": true
+    }
+   ]
+  },
+  "outfit": {
+   "label": "Outfit",
+   "none": "Top and bottom",
+   "items": [
+    {
+     "id": "male_casualsuit04",
+     "label": "T-shirt and jeans",
+     "triangles": 3240,
+     "thumb": true
+    },
+    {
+     "id": "male_casualsuit06",
+     "label": "White T-shirt and jeans",
+     "triangles": 7168,
+     "thumb": true
+    },
+    {
+     "id": "male_casualsuit01",
+     "label": "Shirt and jeans",
+     "triangles": 5000,
+     "thumb": true
+    },
+    {
+     "id": "male_casualsuit03",
+     "label": "Striped shirt and jeans",
+     "triangles": 4800,
+     "thumb": true
+    },
+    {
+     "id": "male_casualsuit05",
+     "label": "Jacket and jeans",
+     "triangles": 5996,
+     "thumb": true
+    },
+    {
+     "id": "male_elegantsuit01",
+     "label": "Suit and tie",
+     "triangles": 5233,
+     "thumb": true
+    },
+    {
+     "id": "female_casualsuit01",
+     "label": "Fitted T-shirt and jeans",
+     "triangles": 4236,
+     "thumb": true
+    },
+    {
+     "id": "female_casualsuit02",
+     "label": "T-shirt and shorts",
+     "triangles": 5488,
+     "thumb": true
+    },
+    {
+     "id": "female_sportsuit01",
+     "label": "Sporty top and trousers",
+     "triangles": 3436,
+     "thumb": true
+    },
+    {
+     "id": "male_casualsuit02",
+     "label": "Long-sleeve shirt and jeans",
+     "triangles": 4120,
+     "thumb": true
+    },
+    {
+     "id": "male_worksuit01",
+     "label": "Dungarees",
+     "triangles": 6986,
+     "thumb": true
+    },
+    {
+     "id": "female_elegantsuit01",
+     "label": "Blouse and skirt",
+     "triangles": 4192,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "joachip_cyborg_suit",
+     "label": "Cyborg suit",
+     "triangles": 2380,
+     "thumb": true
+    },
+    {
+     "id": "thegreatengineer_galactic_warrior_uniform",
+     "label": "Galactic uniform",
+     "triangles": 5096,
+     "thumb": true
+    },
+    {
+     "id": "matcreator_mc-skinsuit_2022",
+     "label": "Black bodysuit",
+     "triangles": 5885,
+     "thumb": true
+    },
+    {
+     "id": "ours_space_suit",
+     "label": "Space suit",
+     "triangles": 5885,
+     "thumb": true
+    },
+    {
+     "id": "ours_neon_suit",
+     "label": "Neon bodysuit",
+     "triangles": 5885,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hero_suit_1",
+     "label": "Hero suit, red and black",
+     "triangles": 5410,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hero_suit_2",
+     "label": "Hero suit, red",
+     "triangles": 5658,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hero_suit_3",
+     "label": "Hero suit, split",
+     "triangles": 5848,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_heroine_suit_2",
+     "label": "Hero suit, striped",
+     "triangles": 5680,
+     "thumb": true
+    },
+    {
+     "id": "donitz_monk_robe",
+     "label": "Monk robe",
+     "triangles": 5946,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "ours_wizard_robe",
+     "label": "Wizard robe",
+     "triangles": 5946,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "ours_sorcerer_robe",
+     "label": "Sorcerer robe",
+     "triangles": 5946,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "mindfront_kimono",
+     "label": "Kimono",
+     "triangles": 5537,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_halter_dress_knee_length",
+     "label": "Halter dress",
+     "triangles": 3936,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_halter_dress_midi",
+     "label": "Halter dress, midi",
+     "triangles": 5184,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_halter_dress_with_fluted_skirt",
+     "label": "Fluted dress",
+     "triangles": 6432,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_cut_out_dress",
+     "label": "Cut-out dress",
+     "triangles": 6156,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_shift_dress",
+     "label": "Shift dress",
+     "triangles": 5426,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_camisole_dress_with_full_skirt",
+     "label": "Full-skirt dress",
+     "triangles": 5395,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_strapless_ruffle_top_dress",
+     "label": "Strapless dress",
+     "triangles": 5167,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_bodice_dress_with_lace_ruffle_skirt",
+     "label": "Bodice dress, lace",
+     "triangles": 5304,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_keyhole_neck_dress",
+     "label": "Keyhole dress",
+     "triangles": 5366,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_dress_with_tiered_skirt",
+     "label": "Tiered dress",
+     "triangles": 5668,
+     "thumb": true,
+     "skirt": true
+    }
+   ]
+  },
+  "top": {
+   "label": "Top",
+   "none": null,
+   "items": [
+    {
+     "id": "elvs_crude_t-shirt_male",
+     "label": "T-shirt",
+     "triangles": 2068,
+     "thumb": true
+    },
+    {
+     "id": "joepal_crude_t-shirt_female",
+     "label": "Fitted T-shirt",
+     "triangles": 2068,
+     "thumb": true
+    },
+    {
+     "id": "toigo_basic_tucked_t-shirt",
+     "label": "Tucked T-shirt",
+     "triangles": 2700,
+     "thumb": true
+    },
+    {
+     "id": "namuhekam_male_polo_shirt",
+     "label": "Polo shirt",
+     "triangles": 4106,
+     "thumb": true
+    },
+    {
+     "id": "toigo_fisherman_sweater",
+     "label": "Sweater",
+     "triangles": 4164,
+     "thumb": true
+    },
+    {
+     "id": "toigo_turtleneck_halter_top",
+     "label": "Halter top",
+     "triangles": 5504,
+     "thumb": true
+    },
+    {
+     "id": "toigo_keyhole_tank_top",
+     "label": "Tank top",
+     "triangles": 1352,
+     "thumb": true
+    },
+    {
+     "id": "toigo_bodice-style_top",
+     "label": "Bodice",
+     "triangles": 1944,
+     "thumb": true
+    },
+    {
+     "id": "toigo_camisole_top",
+     "label": "Camisole",
+     "triangles": 4116,
+     "thumb": true
+    },
+    {
+     "id": "rehmanpolanski_viking_tunic",
+     "label": "Viking tunic",
+     "triangles": 3283,
+     "thumb": true
+    }
+   ]
+  },
+  "bottom": {
+   "label": "Bottom",
+   "none": null,
+   "items": [
+    {
+     "id": "toigo_wool_pants",
+     "label": "Trousers",
+     "triangles": 2674,
+     "thumb": true
+    },
+    {
+     "id": "cortu_cargo_pants",
+     "label": "Cargo trousers",
+     "triangles": 392,
+     "thumb": true
+    },
+    {
+     "id": "toigo_harem_pants",
+     "label": "Harem trousers",
+     "triangles": 4364,
+     "thumb": true
+    },
+    {
+     "id": "cortu_jeans_shorts",
+     "label": "Denim shorts",
+     "triangles": 500,
+     "thumb": true
+    },
+    {
+     "id": "rehmanpolanski_viking_pants",
+     "label": "Viking trousers",
+     "triangles": 2544,
+     "thumb": true
+    },
+    {
+     "id": "toigo_long_full_skirt",
+     "label": "Long skirt",
+     "triangles": 5848,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_skirt_with_lace_ruffle",
+     "label": "Lace ruffle skirt",
+     "triangles": 5576,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_tiered_mini_skirt",
+     "label": "Tiered mini skirt",
+     "triangles": 5327,
+     "thumb": true,
+     "skirt": true
+    },
+    {
+     "id": "toigo_tiered_skirt",
+     "label": "Tiered skirt",
+     "triangles": 5184,
+     "thumb": true,
+     "skirt": true
+    }
+   ]
+  },
+  "shoes": {
+   "label": "Shoes",
+   "none": "Barefoot",
+   "items": [
+    {
+     "id": "shoes02",
+     "label": "Sneakers",
+     "triangles": 3064,
+     "thumb": true
+    },
+    {
+     "id": "shoes01",
+     "label": "Shoes 1",
+     "triangles": 3320,
+     "thumb": true
+    },
+    {
+     "id": "shoes03",
+     "label": "Shoes 3",
+     "triangles": 4128,
+     "thumb": true
+    },
+    {
+     "id": "shoes04",
+     "label": "Shoes 4",
+     "triangles": 3320,
+     "thumb": true
+    },
+    {
+     "id": "shoes05",
+     "label": "Shoes 5",
+     "triangles": 3064,
+     "thumb": true
+    },
+    {
+     "id": "shoes06",
+     "label": "Shoes 6",
+     "triangles": 3064,
+     "thumb": true
+    },
+    {
+     "id": "toigo_ankle_boots_male",
+     "label": "Ankle boots",
+     "triangles": 4120,
+     "thumb": true
+    },
+    {
+     "id": "toigo_ankle_boots_female",
+     "label": "White ankle boots",
+     "triangles": 4120,
+     "thumb": true
+    },
+    {
+     "id": "toigo_mj_cloth_shoes",
+     "label": "Cloth shoes",
+     "triangles": 1004,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hero_boots_1",
+     "label": "Knee boots, red",
+     "triangles": 2888,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_hero_boots_2",
+     "label": "Knee boots, blue",
+     "triangles": 2312,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_heroine_boots_1",
+     "label": "Thigh boots, black",
+     "triangles": 4104,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_heroine_boots_2",
+     "label": "Cuffed boots, green",
+     "triangles": 2720,
+     "thumb": true
+    },
+    {
+     "id": "culturalibre_heroine_boots_4",
+     "label": "Boots, red and black",
+     "triangles": 1712,
+     "thumb": true
+    },
+    {
+     "id": "rehmanpolanski_viking_boots",
+     "label": "Viking boots",
+     "triangles": 3792,
+     "thumb": true
+    }
+   ]
+  }
+ },
+ "always": [
+  "low-poly",
+  "eyelashes01",
+  "teeth_front",
+  "tongue01"
+ ],
+ "skins": {
+  "young_caucasian_male": {
+   "texture": "skin_young_caucasian_male.jpg",
+   "swatch": [
+    227,
+    173,
+    140
+   ]
+  },
+  "young_caucasian_female": {
+   "texture": "skin_young_caucasian_female.jpg",
+   "swatch": [
+    206,
+    158,
+    131
+   ]
+  },
+  "young_asian_male": {
+   "texture": "skin_young_asian_male.jpg",
+   "swatch": [
+    202,
+    159,
+    133
+   ]
+  },
+  "young_asian_female": {
+   "texture": "skin_young_asian_female.jpg",
+   "swatch": [
+    206,
+    158,
+    126
+   ]
+  },
+  "young_african_male": {
+   "texture": "skin_young_african_male.jpg",
+   "swatch": [
+    91,
+    58,
+    42
+   ]
+  },
+  "young_african_female": {
+   "texture": "skin_young_african_female.jpg",
+   "swatch": [
+    94,
+    56,
+    40
+   ]
+  },
+  "middleage_caucasian_male": {
+   "texture": "skin_middleage_caucasian_male.jpg",
+   "swatch": [
+    208,
+    163,
+    134
+   ]
+  },
+  "middleage_caucasian_female": {
+   "texture": "skin_middleage_caucasian_female.jpg",
+   "swatch": [
+    208,
+    163,
+    135
+   ]
+  },
+  "middleage_asian_male": {
+   "texture": "skin_middleage_asian_male.jpg",
+   "swatch": [
+    212,
+    167,
+    138
+   ]
+  },
+  "middleage_asian_female": {
+   "texture": "skin_middleage_asian_female.jpg",
+   "swatch": [
+    214,
+    170,
+    140
+   ]
+  },
+  "middleage_african_male": {
+   "texture": "skin_middleage_african_male.jpg",
+   "swatch": [
+    97,
+    61,
+    43
+   ]
+  },
+  "middleage_african_female": {
+   "texture": "skin_middleage_african_female.jpg",
+   "swatch": [
+    98,
+    56,
+    40
+   ]
+  },
+  "old_caucasian_male": {
+   "texture": "skin_old_caucasian_male.jpg",
+   "swatch": [
+    229,
+    182,
+    147
+   ]
+  },
+  "old_caucasian_female": {
+   "texture": "skin_old_caucasian_female.jpg",
+   "swatch": [
+    216,
+    177,
+    152
+   ]
+  },
+  "old_asian_male": {
+   "texture": "skin_old_asian_male.jpg",
+   "swatch": [
+    192,
+    131,
+    96
+   ]
+  },
+  "old_asian_female": {
+   "texture": "skin_old_asian_female.jpg",
+   "swatch": [
+    202,
+    146,
+    110
+   ]
+  },
+  "old_african_male": {
+   "texture": "skin_old_african_male.jpg",
+   "swatch": [
+    103,
+    59,
+    36
+   ]
+  },
+  "old_african_female": {
+   "texture": "skin_old_african_female.jpg",
+   "swatch": [
+    92,
+    42,
+    24
+   ]
+  }
+ },
+ "eyeColors": {
+  "brown": "eye_brown.jpg",
+  "brownlight": "eye_brownlight.jpg",
+  "green": "eye_green.jpg",
+  "bluegreen": "eye_bluegreen.jpg",
+  "blue": "eye_blue.jpg",
+  "lightblue": "eye_lightblue.jpg",
+  "deepblue": "eye_deepblue.jpg",
+  "grey": "eye_grey.jpg",
+  "ice": "eye_ice.jpg"
+ },
+ "masks": [
+  "mask_beard.png",
+  "mask_eyeshadow.png",
+  "mask_lips.png",
+  "mask_nails.png"
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "_about": "Face-shape sliders for the editor: MakeHuman targets (MPFB system data, CC0), paths relative to data/targets without .target.gz. 'decr' applies for values below 0, 'incr' above; one-sided sliders (no 'decr') run 0..1. Exported by export_web_assets.py.",
+ "modifiers": [
+  {"id": "noseSize",       "group": "Nose", "label": "Size",            "decr": ["nose/nose-volume-decr"], "incr": ["nose/nose-volume-incr"]},
+  {"id": "noseWidth",      "group": "Nose", "label": "Width",           "decr": ["nose/nose-scale-horiz-decr"], "incr": ["nose/nose-scale-horiz-incr"]},
+  {"id": "noseLength",     "group": "Nose", "label": "Length",          "decr": ["nose/nose-scale-vert-decr"], "incr": ["nose/nose-scale-vert-incr"]},
+  {"id": "noseDepth",      "group": "Nose", "label": "Projection",      "decr": ["nose/nose-scale-depth-decr"], "incr": ["nose/nose-scale-depth-incr"]},
+  {"id": "noseHump",       "group": "Nose", "label": "Bridge hump",     "decr": ["nose/nose-hump-decr"], "incr": ["nose/nose-hump-incr"]},
+  {"id": "noseTip",        "group": "Nose", "label": "Tip down – up",   "decr": ["nose/nose-point-down"], "incr": ["nose/nose-point-up"]},
+  {"id": "noseNostrils",   "group": "Nose", "label": "Nostrils",        "decr": ["nose/nose-flaring-decr"], "incr": ["nose/nose-flaring-incr"]},
+  {"id": "headWidth",      "group": "Face", "label": "Face width",      "decr": ["head/head-scale-horiz-decr"], "incr": ["head/head-scale-horiz-incr"]},
+  {"id": "headLength",     "group": "Face", "label": "Face length",     "decr": ["head/head-scale-vert-decr"], "incr": ["head/head-scale-vert-incr"]},
+  {"id": "chinWidth",      "group": "Face", "label": "Chin width",      "decr": ["chin/chin-width-decr"], "incr": ["chin/chin-width-incr"]},
+  {"id": "chinProminent",  "group": "Face", "label": "Chin",            "decr": ["chin/chin-prominent-decr"], "incr": ["chin/chin-prominent-incr"]},
+  {"id": "cheekbones",     "group": "Face", "label": "Cheekbones",      "decr": ["cheek/l-cheek-bones-decr", "cheek/r-cheek-bones-decr"], "incr": ["cheek/l-cheek-bones-incr", "cheek/r-cheek-bones-incr"]},
+  {"id": "lips",           "group": "Face", "label": "Lips",            "decr": ["mouth/mouth-upperlip-volume-decr", "mouth/mouth-lowerlip-volume-decr"], "incr": ["mouth/mouth-upperlip-volume-incr", "mouth/mouth-lowerlip-volume-incr"]},
+  {"id": "mouthWidth",     "group": "Face", "label": "Mouth width",     "decr": ["mouth/mouth-scale-horiz-decr"], "incr": ["mouth/mouth-scale-horiz-incr"]},
+  {"id": "eyeSize",        "group": "Face", "label": "Eye size",        "decr": ["eyes/l-eye-scale-decr", "eyes/r-eye-scale-decr"], "incr": ["eyes/l-eye-scale-incr", "eyes/r-eye-scale-incr"]},
+  {"id": "earSize",        "group": "Ears", "label": "Size",            "decr": ["ears/l-ear-scale-decr", "ears/r-ear-scale-decr"], "incr": ["ears/l-ear-scale-incr", "ears/r-ear-scale-incr"]},
+  {"id": "earWing",        "group": "Ears", "label": "Sticking out",    "decr": ["ears/l-ear-wing-decr", "ears/r-ear-wing-decr"], "incr": ["ears/l-ear-wing-incr", "ears/r-ear-wing-incr"]},
+  {"id": "earPointed",     "group": "Ears", "label": "Pointed",         "incr": ["ears/l-ear-shape-pointed", "ears/r-ear-shape-pointed"]}
+ ]
+}

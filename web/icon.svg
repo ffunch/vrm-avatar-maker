@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
+  <title id="t">VRM Avatar Maker</title>
+  <rect width="64" height="64" rx="14" fill="#26282b"/>
+  <circle cx="32" cy="25" r="11" fill="#e0a458"/>
+  <path d="M12 56c1.5-11 9.5-17 20-17s18.5 6 20 17z" fill="#e0a458"/>
+</svg>

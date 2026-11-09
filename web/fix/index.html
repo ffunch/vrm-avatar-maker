@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fix my VRM</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  :root { --bg: #26282b; --panel: #1b1c1f; --line: #34363b; --fg: #ececec; --muted: #9a9ca3; --accent: #e0a458; --bad: #e26a5a; --good: #7cc47c; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 14px/1.4 system-ui, sans-serif; }
+  #app { display: flex; height: 100%; }
+  #panel { width: 380px; flex: none; overflow-y: auto; background: var(--panel); border-right: 1px solid var(--line); padding: 14px 18px; box-sizing: border-box; }
+  #view { flex: 1; position: relative; min-width: 0; }
+  #view canvas { display: block; width: 100%; height: 100%; }
+  h1 { font-size: 18px; margin: 0 0 6px; }
+  p { color: var(--muted); margin: 6px 0 12px; }
+  a { color: var(--accent); }
+  #drop { border: 2px dashed var(--line); border-radius: 8px; padding: 22px 12px; text-align: center; color: var(--muted); cursor: pointer; }
+  #drop.over { border-color: var(--accent); color: var(--fg); }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+  th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); font-weight: normal; }
+  th { color: var(--muted); font-size: 12px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .ok { color: var(--good); } .bad { color: var(--bad); }
+  #meta { color: var(--muted); font-size: 13px; }
+  #steps { margin: 8px 0; padding-left: 18px; color: var(--muted); }
+  button.main { background: var(--accent); color: #1b1c1f; border: none; border-radius: 6px; padding: 9px 12px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 6px; }
+  button.main:disabled { opacity: 0.5; cursor: default; }
+  #message { margin: 8px 0; }
+  #hint { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); pointer-events: none; }
+  @media (max-width: 700px) {
+    #app { flex-direction: column-reverse; }
+    #panel { width: 100%; height: 60%; }
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "../vendor/three-0.183.2/three.module.min.js",
+  "three/addons/": "../vendor/three-0.183.2/addons/",
+  "@pixiv/three-vrm": "../vendor/three-vrm-3.5.1/three-vrm.module.min.js"
+} }
+</script>
+</head>
+<body>
+<div id="app">
+  <div id="panel">
+    <h1>Fix my VRM</h1>
+    <p>Too big for So Many Rooms? Pick a VRM avatar and this page makes a copy that fits: at most 40,000 triangles, 16 materials, 2048 px textures and 20 MB. Everything happens in your browser; the file isn't uploaded anywhere.</p>
+    <div id="drop">Drop a .vrm file here, or click to choose one</div>
+    <input type="file" id="file" accept=".vrm,.glb" hidden>
+    <div id="report" hidden>
+      <div id="meta"></div>
+      <table>
+        <thead><tr><th></th><th>Limit</th><th>This file</th><th id="after-head" hidden>Fixed</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div id="message"></div>
+      <ol id="steps"></ol>
+      <button class="main" id="fix" hidden>Make a copy that fits</button>
+      <button class="main" id="download" hidden>Download the fixed VRM</button>
+    </div>
+    <p style="margin-top:18px">Made with <a href="../editor/">VRM Avatar Maker</a>? Its avatars already fit.</p>
+  </div>
+  <div id="view"><div id="hint">The avatar shows here, seated as in So Many Rooms.</div></div>
+</div>
+<script type="module" src="./fix.js"></script>
+</body>
+</html>

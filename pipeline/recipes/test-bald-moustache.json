@@ -1,0 +1,17 @@
+{
+  "name": "Test: bald man with moustache and glasses",
+  "body": { "gender": 1.0, "age": 0.8, "muscle": 0.45, "weight": 0.6,
+            "race": { "caucasian": 0.9, "african": 0.05, "asian": 0.05 } },
+  "skin": "skins/middleage_caucasian_male/middleage_caucasian_male.mhmat",
+  "eyes": "eyes/low-poly/low-poly.mhclo",
+  "eyebrows": "eyebrows/eyebrow001/eyebrow001.mhclo",
+  "eyelashes": "eyelashes/eyelashes01/eyelashes01.mhclo",
+  "hair": null,
+  "clothes": [
+    "clothes/rehmanpolanski_moustache_viking/rehmanpolanski_moustache_viking.mhclo",
+    "clothes/spamrakuen_tbm_glasses_frames_01/spamrakuen_tbm_glasses_frames_01.mhclo",
+    "clothes/namuhekam_male_polo_shirt/namuhekam_male_polo_shirt.mhclo",
+    "clothes/toigo_wool_pants/toigo_wool_pants.mhclo",
+    "clothes/shoes01/shoes01.mhclo"
+  ]
+}

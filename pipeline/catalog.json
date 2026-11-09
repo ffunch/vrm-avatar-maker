@@ -1,0 +1,233 @@
+{
+ "_about": "Editor catalog: which CC0 MakeHuman items the editor offers, per category. Paths are relative to MPFB user data. Items with 'derive' are made first by make_low_item.py into assets/parts/<id>/ (run pipeline/make_parts.sh): 'ratio' decimates, 'keep' keeps only faces where the expression on their center x, y, z holds (.obj units), 'dropReddish' drops gum-colored faces. 'cutout': true keeps a texture's transparency (alpha MASK) for clothes whose texture uses it. Only items whose own header says CC0 (research/makehuman-asset-inventory.md).",
+ "categories": {
+  "hair": {
+   "label": "Hair",
+   "none": "Bald",
+   "items": [
+    {"id": "short02", "label": "Short, side part", "path": "hair/short02/short02.mhclo"},
+    {"id": "short01", "label": "Short, swept", "path": "hair/short01/short01.mhclo"},
+    {"id": "short03", "label": "Short, rounded", "path": "hair/short03/short03.mhclo"},
+    {"id": "short04", "label": "Short, cropped", "path": "hair/short04/short04.mhclo"},
+    {"id": "culturalibre_hair_05", "label": "Short, layered", "path": "hair/culturalibre_hair_05/culturalibre_hair_05.mhclo"},
+    {"id": "cortu_short_messy_hair", "label": "Short, messy", "path": "hair/cortu_short_messy_hair/cortu_short_messy_hair.mhclo"},
+    {"id": "afro01", "label": "Afro", "path": "hair/afro01/afro01.mhclo"},
+    {"id": "cortu_strawberry_cloud_hair", "label": "Curly", "path": "hair/cortu_strawberry_cloud_hair/cortu_strawberry_cloud_hair.mhclo"},
+    {"id": "cortu_shaggy_green_hair", "label": "Shaggy", "path": "hair/cortu_shaggy_green_hair/cortu_shaggy_green_hair.mhclo"},
+    {"id": "bob02", "label": "Bob", "path": "hair/bob02/bob02.mhclo"},
+    {"id": "bob01", "label": "Bob, long", "path": "hair/bob01/bob01.mhclo", "derive": { "ratio": 0.5 }},
+    {"id": "toigo_blunt_bob", "label": "Bob, blunt", "path": "hair/toigo_blunt_bob/toigo_blunt_bob.mhclo"},
+    {"id": "toigo_blunt_bob_with_bangs", "label": "Bob, blunt with bangs", "path": "hair/toigo_blunt_bob_with_bangs/toigo_blunt_bob_with_bangs.mhclo"},
+    {"id": "toigo_curled_under_bob", "label": "Bob, curled under", "path": "hair/toigo_curled_under_bob/toigo_curled_under_bob.mhclo"},
+    {"id": "toigo_curled_under_bob_with_bangs", "label": "Bob, curled with bangs", "path": "hair/toigo_curled_under_bob_with_bangs/toigo_curled_under_bob_with_bangs.mhclo"},
+    {"id": "toigo_inverted_bob", "label": "Bob, inverted", "path": "hair/toigo_inverted_bob/toigo_inverted_bob.mhclo"},
+    {"id": "toigo_inverted_bob_with_bangs", "label": "Bob, inverted with bangs", "path": "hair/toigo_inverted_bob_with_bangs/toigo_inverted_bob_with_bangs.mhclo"},
+    {"id": "cortu_straight_bangs", "label": "Straight with bangs", "path": "hair/cortu_straight_bangs/cortu_straight_bangs.mhclo"},
+    {"id": "faydaen_hair_1", "label": "Long, loose", "path": "hair/faydaen_hair_1/faydaen_hair_1.mhclo"},
+    {"id": "long01", "label": "Long", "path": "hair/long01/long01.mhclo"},
+    {"id": "ponytail01", "label": "Ponytail", "path": "hair/ponytail01/ponytail01.mhclo"},
+    {"id": "braid01", "label": "Braid", "path": "hair/braid01/braid01.mhclo"}
+   ]
+  },
+  "eyebrows": {
+   "label": "Eyebrows",
+   "items": [
+    {"id": "eyebrow001", "label": "1", "path": "eyebrows/eyebrow001/eyebrow001.mhclo"},
+    {"id": "eyebrow002", "label": "2", "path": "eyebrows/eyebrow002/eyebrow002.mhclo"},
+    {"id": "eyebrow003", "label": "3", "path": "eyebrows/eyebrow003/eyebrow003.mhclo"},
+    {"id": "eyebrow004", "label": "4", "path": "eyebrows/eyebrow004/eyebrow004.mhclo"},
+    {"id": "eyebrow005", "label": "5", "path": "eyebrows/eyebrow005/eyebrow005.mhclo"},
+    {"id": "eyebrow006", "label": "6", "path": "eyebrows/eyebrow006/eyebrow006.mhclo"},
+    {"id": "eyebrow007", "label": "7", "path": "eyebrows/eyebrow007/eyebrow007.mhclo"},
+    {"id": "eyebrow008", "label": "8", "path": "eyebrows/eyebrow008/eyebrow008.mhclo"},
+    {"id": "eyebrow009", "label": "9", "path": "eyebrows/eyebrow009/eyebrow009.mhclo"},
+    {"id": "eyebrow010", "label": "10", "path": "eyebrows/eyebrow010/eyebrow010.mhclo"},
+    {"id": "eyebrow011", "label": "11", "path": "eyebrows/eyebrow011/eyebrow011.mhclo"},
+    {"id": "eyebrow012", "label": "12", "path": "eyebrows/eyebrow012/eyebrow012.mhclo"}
+   ]
+  },
+  "moustache": {
+   "label": "Moustache",
+   "none": "None",
+   "items": [
+    {"id": "rehmanpolanski_moustache_viking", "label": "Moustache", "path": "clothes/rehmanpolanski_moustache_viking/rehmanpolanski_moustache_viking.mhclo"}
+   ]
+  },
+  "beard": {
+   "label": "Beard",
+   "none": "None",
+   "items": [
+    {"id": "paint_beard_short", "label": "Full short beard", "paint": {"mask": "beard", "amount": 0.95}},
+    {"id": "paint_stubble", "label": "Stubble", "paint": {"mask": "beard", "amount": 0.4}},
+    {"id": "beard_goatee", "label": "Goatee", "path": "clothes/rehmanpolanski_beard_viking/rehmanpolanski_beard_viking.mhclo", "derive": { "ratio": 1.0, "keep": "6.97 < y < 7.42 and abs(x) < 0.26" }},
+    {"id": "beard_short", "label": "Jawline beard", "path": "clothes/rehmanpolanski_beard_viking/rehmanpolanski_beard_viking.mhclo", "derive": { "ratio": 1.0, "keep": "y > 6.9" }},
+    {"id": "rehmanpolanski_beard_viking", "label": "Long beard", "path": "clothes/rehmanpolanski_beard_viking/rehmanpolanski_beard_viking.mhclo"}
+   ]
+  },
+  "glasses": {
+   "label": "Glasses and masks",
+   "none": "None",
+   "items": [
+    {"id": "spamrakuen_tbm_glasses_frames_01", "label": "Black frames", "path": "clothes/spamrakuen_tbm_glasses_frames_01/spamrakuen_tbm_glasses_frames_01.mhclo"},
+    {"id": "spamrakuen_sagerfrogs_glasses_01", "label": "Red frames", "path": "clothes/spamrakuen_sagerfrogs_glasses_01/spamrakuen_sagerfrogs_glasses_01.mhclo"},
+    {"id": "spamrakuen_sagerfrogs_glasses_02", "label": "Narrow", "path": "clothes/spamrakuen_sagerfrogs_glasses_02/spamrakuen_sagerfrogs_glasses_02.mhclo"},
+    {"id": "spamrakuen_sagerfrogs_glasses_03", "label": "Half rim", "path": "clothes/spamrakuen_sagerfrogs_glasses_03/spamrakuen_sagerfrogs_glasses_03.mhclo"},
+    {"id": "spamrakuen_sagerfrogs_glasses_04", "label": "Rimless", "path": "clothes/spamrakuen_sagerfrogs_glasses_04/spamrakuen_sagerfrogs_glasses_04.mhclo"},
+    {"id": "visor_band", "label": "Visor", "path": "assets/parts/visor_band/visor_band.mhclo"},
+    {"id": "visor_slit", "label": "Slit visor", "path": "assets/parts/visor_slit/visor_slit.mhclo"},
+    {"id": "culturalibre_hero_mask_3", "label": "Domino mask", "path": "clothes/culturalibre_hero_mask_3/culturalibre_hero_mask_3.mhclo"},
+    {"id": "culturalibre_hero_mask_4", "label": "Bat mask", "path": "clothes/culturalibre_hero_mask_4/culturalibre_hero_mask_4.mhclo"},
+    {"id": "toigo_round_glasses_leopard", "label": "Round, tinted", "path": "clothes/toigo_round_glasses_leopard/toigo_round_glasses_leopard.mhclo"}
+   ]
+  },
+  "hat": {
+   "label": "Hat",
+   "none": "No hat",
+   "items": [
+    {"id": "fedora01", "label": "Fedora", "path": "clothes/fedora01/fedora01.mhclo"},
+    {"id": "fedora_cocked", "label": "Fedora, tilted", "path": "clothes/fedora_cocked/fedora_cocked.mhclo"},
+    {"id": "aethelraed_unraed_cloche_hat", "label": "Cloche", "path": "clothes/aethelraed_unraed_cloche_hat/aethelraed_unraed_cloche_hat.mhclo"},
+    {"id": "joepal_xmas_cap", "label": "Santa hat", "path": "clothes/joepal_xmas_cap/joepal_xmas_cap.mhclo"},
+    {"id": "culturalibre_motorcycle_helmet", "label": "Motorcycle helmet", "path": "clothes/culturalibre_motorcycle_helmet/culturalibre_motorcycle_helmet.mhclo", "derive": { "ratio": 0.07 }},
+    {"id": "culturalibre_warrior_helmet", "label": "Dragon helmet", "path": "clothes/culturalibre_warrior_helmet/culturalibre_warrior_helmet.mhclo"},
+    {"id": "culturalibre_skull_helmet", "label": "Horned skull helmet", "path": "clothes/culturalibre_skull_helmet/culturalibre_skull_helmet.mhclo", "derive": { "ratio": 0.3 }},
+    {"id": "culturalibre_hero-heroine_hood_1", "label": "Hero hood", "path": "clothes/culturalibre_hero-heroine_hood_1/culturalibre_hero-heroine_hood_1.mhclo"},
+    {"id": "culturalibre_hero-heroine_hood_2", "label": "Hero hood, two-tone", "path": "clothes/culturalibre_hero-heroine_hood_2/culturalibre_hero-heroine_hood_2.mhclo"},
+    {"id": "culturalibre_heroine_mask_1", "label": "Devil mask", "path": "clothes/culturalibre_heroine_mask_1/culturalibre_heroine_mask_1.mhclo"},
+    {"id": "donitz_monk_robe_hood", "label": "Monk hood", "path": "clothes/donitz_monk_robe_hood/donitz_monk_robe_hood.mhclo", "derive": { "ratio": 0.4 }},
+    {"id": "ours_wizard_hood", "label": "Wizard hood", "base": "donitz_monk_robe_hood"},
+    {"id": "ours_sorcerer_hood", "label": "Sorcerer hood", "base": "donitz_monk_robe_hood"},
+    {"id": "culturalibre_minotaur_horns", "label": "Horns", "path": "clothes/culturalibre_minotaur_horns/culturalibre_minotaur_horns.mhclo"},
+    {"id": "culturalibre_faun_horns", "label": "Faun horns", "path": "clothes/culturalibre_faun_horns/culturalibre_faun_horns.mhclo", "derive": { "ratio": 0.2 }}
+   ]
+  },
+  "outfit": {
+   "label": "Outfit",
+   "none": "Top and bottom",
+   "items": [
+    {"id": "male_casualsuit04", "label": "T-shirt and jeans", "path": "clothes/male_casualsuit04/male_casualsuit04.mhclo"},
+    {"id": "male_casualsuit06", "label": "White T-shirt and jeans", "path": "clothes/male_casualsuit06/male_casualsuit06.mhclo"},
+    {"id": "male_casualsuit01", "label": "Shirt and jeans", "path": "clothes/male_casualsuit01/male_casualsuit01.mhclo", "derive": { "ratio": 0.3 }},
+    {"id": "male_casualsuit03", "label": "Striped shirt and jeans", "path": "clothes/male_casualsuit03/male_casualsuit03.mhclo"},
+    {"id": "male_casualsuit05", "label": "Jacket and jeans", "path": "clothes/male_casualsuit05/male_casualsuit05.mhclo"},
+    {"id": "male_elegantsuit01", "label": "Suit and tie", "path": "clothes/male_elegantsuit01/male_elegantsuit01.mhclo", "derive": { "ratio": 0.35 }},
+    {"id": "female_casualsuit01", "label": "Fitted T-shirt and jeans", "path": "clothes/female_casualsuit01/female_casualsuit01.mhclo"},
+    {"id": "female_casualsuit02", "label": "T-shirt and shorts", "path": "clothes/female_casualsuit02/female_casualsuit02.mhclo"},
+    {"id": "female_sportsuit01", "label": "Sporty top and trousers", "path": "clothes/female_sportsuit01/female_sportsuit01.mhclo"},
+    {"id": "male_casualsuit02", "label": "Long-sleeve shirt and jeans", "path": "clothes/male_casualsuit02/male_casualsuit02.mhclo"},
+    {"id": "male_worksuit01", "label": "Dungarees", "path": "clothes/male_worksuit01/male_worksuit01.mhclo"},
+    {"id": "female_elegantsuit01", "label": "Blouse and skirt", "path": "clothes/female_elegantsuit01/female_elegantsuit01.mhclo", "skirt": true},
+    {"id": "joachip_cyborg_suit", "label": "Cyborg suit", "path": "clothes/joachip_cyborg_suit/joachip_cyborg_suit.mhclo"},
+    {"id": "thegreatengineer_galactic_warrior_uniform", "label": "Galactic uniform", "path": "clothes/thegreatengineer_galactic_warrior_uniform/thegreatengineer_galactic_warrior_uniform.mhclo", "derive": { "ratio": 0.5 }},
+    {"id": "matcreator_mc-skinsuit_2022", "label": "Black bodysuit", "path": "clothes/matcreator_mc-skinsuit_2022/matcreator_mc-skinsuit_2022.mhclo", "derive": { "ratio": 0.3 }},
+    {"id": "ours_space_suit", "label": "Space suit", "base": "matcreator_mc-skinsuit_2022"},
+    {"id": "ours_neon_suit", "label": "Neon bodysuit", "base": "matcreator_mc-skinsuit_2022"},
+    {"id": "culturalibre_hero_suit_1", "label": "Hero suit, red and black", "path": "clothes/culturalibre_hero_suit_1/culturalibre_hero_suit_1.mhclo", "derive": { "ratio": 0.35 }},
+    {"id": "culturalibre_hero_suit_2", "label": "Hero suit, red", "path": "clothes/culturalibre_hero_suit_2/culturalibre_hero_suit_2.mhclo", "derive": { "ratio": 0.5 }},
+    {"id": "culturalibre_hero_suit_3", "label": "Hero suit, split", "path": "clothes/culturalibre_hero_suit_3/culturalibre_hero_suit_3.mhclo", "derive": { "ratio": 0.2 }},
+    {"id": "culturalibre_heroine_suit_2", "label": "Hero suit, striped", "path": "clothes/culturalibre_heroine_suit_2/culturalibre_heroine_suit_2.mhclo", "derive": { "ratio": 0.4 }},
+    {"id": "donitz_monk_robe", "label": "Monk robe", "path": "clothes/donitz_monk_robe/donitz_monk_robe.mhclo", "derive": { "ratio": 0.3 }, "skirt": true},
+    {"id": "ours_wizard_robe", "label": "Wizard robe", "base": "donitz_monk_robe", "skirt": true},
+    {"id": "ours_sorcerer_robe", "label": "Sorcerer robe", "base": "donitz_monk_robe", "skirt": true},
+    {"id": "mindfront_kimono", "label": "Kimono", "path": "clothes/mindfront_kimono/mindfront_kimono.mhclo", "derive": { "ratio": 0.8 }, "skirt": true},
+    {"id": "toigo_halter_dress_knee_length", "label": "Halter dress", "path": "clothes/toigo_halter_dress_knee_length/toigo_halter_dress_knee_length.mhclo", "skirt": true},
+    {"id": "toigo_halter_dress_midi", "label": "Halter dress, midi", "path": "clothes/toigo_halter_dress_midi/toigo_halter_dress_midi.mhclo", "skirt": true},
+    {"id": "toigo_halter_dress_with_fluted_skirt", "label": "Fluted dress", "path": "clothes/toigo_halter_dress_with_fluted_skirt/toigo_halter_dress_with_fluted_skirt.mhclo", "skirt": true},
+    {"id": "toigo_cut_out_dress", "label": "Cut-out dress", "path": "clothes/toigo_cut_out_dress/toigo_cut_out_dress.mhclo", "skirt": true},
+    {"id": "toigo_shift_dress", "label": "Shift dress", "path": "clothes/toigo_shift_dress/toigo_shift_dress.mhclo", "derive": { "ratio": 0.4 }, "skirt": true},
+    {"id": "toigo_camisole_dress_with_full_skirt", "label": "Full-skirt dress", "path": "clothes/toigo_camisole_dress_with_full_skirt/toigo_camisole_dress_with_full_skirt.mhclo", "derive": { "ratio": 0.5 }, "skirt": true},
+    {"id": "toigo_strapless_ruffle_top_dress", "label": "Strapless dress", "path": "clothes/toigo_strapless_ruffle_top_dress/toigo_strapless_ruffle_top_dress.mhclo", "derive": { "ratio": 0.5 }, "skirt": true},
+    {"id": "toigo_bodice_dress_with_lace_ruffle_skirt", "label": "Bodice dress, lace", "path": "clothes/toigo_bodice_dress_with_lace_ruffle_skirt/toigo_bodice_dress_with_lace_ruffle_skirt.mhclo", "derive": { "ratio": 0.6 }, "skirt": true},
+    {"id": "toigo_keyhole_neck_dress", "label": "Keyhole dress", "path": "clothes/toigo_keyhole_neck_dress/toigo_keyhole_neck_dress.mhclo", "derive": { "ratio": 0.3 }, "skirt": true},
+    {"id": "toigo_dress_with_tiered_skirt", "label": "Tiered dress", "path": "clothes/toigo_dress_with_tiered_skirt/toigo_dress_with_tiered_skirt.mhclo", "derive": { "ratio": 0.3 }, "skirt": true}
+   ]
+  },
+  "top": {
+   "label": "Top",
+   "items": [
+    {"id": "elvs_crude_t-shirt_male", "label": "T-shirt", "path": "clothes/elvs_crude_t-shirt_male/elvs_crude_t-shirt_male.mhclo"},
+    {"id": "joepal_crude_t-shirt_female", "label": "Fitted T-shirt", "path": "clothes/joepal_crude_t-shirt_female/joepal_crude_t-shirt_female.mhclo"},
+    {"id": "toigo_basic_tucked_t-shirt", "label": "Tucked T-shirt", "path": "clothes/toigo_basic_tucked_t-shirt/toigo_basic_tucked_t-shirt.mhclo"},
+    {"id": "namuhekam_male_polo_shirt", "label": "Polo shirt", "path": "clothes/namuhekam_male_polo_shirt/namuhekam_male_polo_shirt.mhclo"},
+    {"id": "toigo_fisherman_sweater", "label": "Sweater", "path": "clothes/toigo_fisherman_sweater/toigo_fisherman_sweater.mhclo"},
+    {"id": "toigo_turtleneck_halter_top", "label": "Halter top", "path": "clothes/toigo_turtleneck_halter_top/toigo_turtleneck_halter_top.mhclo"},
+    {"id": "toigo_keyhole_tank_top", "label": "Tank top", "path": "clothes/toigo_keyhole_tank_top/toigo_keyhole_tank_top.mhclo"},
+    {"id": "toigo_bodice-style_top", "label": "Bodice", "path": "clothes/toigo_bodice-style_top/toigo_bodice-style_top.mhclo"},
+    {"id": "toigo_camisole_top", "label": "Camisole", "path": "clothes/toigo_camisole_top/toigo_camisole_top.mhclo", "derive": { "ratio": 0.5 }, "cutout": true},
+    {"id": "rehmanpolanski_viking_tunic", "label": "Viking tunic", "path": "clothes/rehmanpolanski_viking_tunic/rehmanpolanski_viking_tunic.mhclo", "derive": { "ratio": 0.5 }}
+   ]
+  },
+  "bottom": {
+   "label": "Bottom",
+   "items": [
+    {"id": "toigo_wool_pants", "label": "Trousers", "path": "clothes/toigo_wool_pants/toigo_wool_pants.mhclo"},
+    {"id": "cortu_cargo_pants", "label": "Cargo trousers", "path": "clothes/cortu_cargo_pants/cortu_cargo_pants.mhclo", "cutout": true},
+    {"id": "toigo_harem_pants", "label": "Harem trousers", "path": "clothes/toigo_harem_pants/toigo_harem_pants.mhclo", "derive": { "ratio": 0.4 }},
+    {"id": "cortu_jeans_shorts", "label": "Denim shorts", "path": "clothes/cortu_jeans_shorts/cortu_jeans_shorts.mhclo", "cutout": true},
+    {"id": "rehmanpolanski_viking_pants", "label": "Viking trousers", "path": "clothes/rehmanpolanski_viking_pants/rehmanpolanski_viking_pants.mhclo"},
+    {"id": "toigo_long_full_skirt", "label": "Long skirt", "path": "clothes/toigo_long_full_skirt/toigo_long_full_skirt.mhclo", "skirt": true},
+    {"id": "toigo_skirt_with_lace_ruffle", "label": "Lace ruffle skirt", "path": "clothes/toigo_skirt_with_lace_ruffle/toigo_skirt_with_lace_ruffle.mhclo", "skirt": true},
+    {"id": "toigo_tiered_mini_skirt", "label": "Tiered mini skirt", "path": "clothes/toigo_tiered_mini_skirt/toigo_tiered_mini_skirt.mhclo", "derive": { "ratio": 0.5 }, "skirt": true},
+    {"id": "toigo_tiered_skirt", "label": "Tiered skirt", "path": "clothes/toigo_tiered_skirt/toigo_tiered_skirt.mhclo", "derive": { "ratio": 0.4 }, "skirt": true}
+   ]
+  },
+  "shoes": {
+   "label": "Shoes",
+   "none": "Barefoot",
+   "items": [
+    {"id": "shoes02", "label": "Sneakers", "path": "clothes/shoes02/shoes02.mhclo"},
+    {"id": "shoes01", "label": "Shoes 1", "path": "clothes/shoes01/shoes01.mhclo"},
+    {"id": "shoes03", "label": "Shoes 3", "path": "clothes/shoes03/shoes03.mhclo"},
+    {"id": "shoes04", "label": "Shoes 4", "path": "clothes/shoes04/shoes04.mhclo"},
+    {"id": "shoes05", "label": "Shoes 5", "path": "clothes/shoes05/shoes05.mhclo"},
+    {"id": "shoes06", "label": "Shoes 6", "path": "clothes/shoes06/shoes06.mhclo"},
+    {"id": "toigo_ankle_boots_male", "label": "Ankle boots", "path": "clothes/toigo_ankle_boots_male/toigo_ankle_boots_male.mhclo"},
+    {"id": "toigo_ankle_boots_female", "label": "White ankle boots", "path": "clothes/toigo_ankle_boots_female/toigo_ankle_boots_female.mhclo"},
+    {"id": "toigo_mj_cloth_shoes", "label": "Cloth shoes", "path": "clothes/toigo_mj_cloth_shoes/toigo_mj_cloth_shoes.mhclo"},
+    {"id": "culturalibre_hero_boots_1", "label": "Knee boots, red", "path": "clothes/culturalibre_hero_boots_1/culturalibre_hero_boots_1.mhclo"},
+    {"id": "culturalibre_hero_boots_2", "label": "Knee boots, blue", "path": "clothes/culturalibre_hero_boots_2/culturalibre_hero_boots_2.mhclo"},
+    {"id": "culturalibre_heroine_boots_1", "label": "Thigh boots, black", "path": "clothes/culturalibre_heroine_boots_1/culturalibre_heroine_boots_1.mhclo"},
+    {"id": "culturalibre_heroine_boots_2", "label": "Cuffed boots, green", "path": "clothes/culturalibre_heroine_boots_2/culturalibre_heroine_boots_2.mhclo"},
+    {"id": "culturalibre_heroine_boots_4", "label": "Boots, red and black", "path": "clothes/culturalibre_heroine_boots_4/culturalibre_heroine_boots_4.mhclo"},
+    {"id": "rehmanpolanski_viking_boots", "label": "Viking boots", "path": "clothes/rehmanpolanski_viking_boots/rehmanpolanski_viking_boots.mhclo", "derive": { "ratio": 0.6 }}
+   ]
+  }
+ },
+ "always": [
+  {"id": "low-poly", "path": "eyes/low-poly/low-poly.mhclo"},
+  {"id": "eyelashes01", "path": "eyelashes/eyelashes01/eyelashes01.mhclo"},
+  {"id": "teeth_front", "path": "teeth/teeth_base/teeth_base.mhclo", "derive": { "ratio": 0.5, "keep": "z > zmax - 0.22", "dropReddish": true }},
+  {"id": "tongue01", "path": "tongue/tongue01/tongue01.mhclo"}
+ ],
+ "eyeColors": [
+  "brown",
+  "brownlight",
+  "green",
+  "bluegreen",
+  "blue",
+  "lightblue",
+  "deepblue",
+  "grey",
+  "ice"
+ ],
+ "skins": [
+  "young_caucasian_male",
+  "young_caucasian_female",
+  "young_asian_male",
+  "young_asian_female",
+  "young_african_male",
+  "young_african_female",
+  "middleage_caucasian_male",
+  "middleage_caucasian_female",
+  "middleage_asian_male",
+  "middleage_asian_female",
+  "middleage_african_male",
+  "middleage_african_female",
+  "old_caucasian_male",
+  "old_caucasian_female",
+  "old_asian_male",
+  "old_asian_female",
+  "old_african_male",
+  "old_african_female"
+ ]
+}

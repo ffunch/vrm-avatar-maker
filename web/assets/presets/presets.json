@@ -1,0 +1,2219 @@
+{
+ "_about": "Ready-made avatars: editor starting points (\"Start from\") and the VRM set for So Many Rooms. Recipes use the editor's recipe format; thumbnails are <id>.webp next to this file.",
+ "presets": [
+  {
+   "id": "office_man",
+   "label": "Office, suit",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.6308,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.05,
+      "asian": 0.05,
+      "caucasian": 0.9
+     }
+    },
+    "skin": {
+     "tone": 0.1,
+     "color": null
+    },
+    "eyes": "blue",
+    "face": {},
+    "hair": {
+     "style": "short01",
+     "color": "#3a281d"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": "spamrakuen_sagerfrogs_glasses_01",
+    "hat": null,
+    "outfit": "male_elegantsuit01",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes01",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "office_woman",
+   "label": "Office, blouse",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.5846,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.05,
+      "asian": 0.85,
+      "caucasian": 0.1
+     }
+    },
+    "skin": {
+     "tone": 0.15,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "toigo_blunt_bob",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow006",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "female_elegantsuit01",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_ankle_boots_female",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.35,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "casual_man",
+   "label": "Casual, afro",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.4554,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.85,
+      "asian": 0.05,
+      "caucasian": 0.1
+     }
+    },
+    "skin": {
+     "tone": 0.92,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "afro01",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow003",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "male_casualsuit04",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes02",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "casual_woman",
+   "label": "Casual, long hair",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.4777,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.05,
+      "asian": 0.05,
+      "caucasian": 0.9
+     }
+    },
+    "skin": {
+     "tone": 0.05,
+     "color": null
+    },
+    "eyes": "bluegreen",
+    "face": {},
+    "hair": {
+     "style": "long01",
+     "color": "#c4a36d"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "female_casualsuit01",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes02",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.25,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "older_man",
+   "label": "Older, grey beard",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.8154,
+     "muscle": 0.5,
+     "weight": 0.6,
+     "race": {
+      "african": 0.0,
+      "asian": 0.0,
+      "caucasian": 1.0
+     }
+    },
+    "skin": {
+     "tone": 0.08,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "short04",
+     "color": "#8e8a86"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "paint_beard_short",
+    "glasses": "spamrakuen_tbm_glasses_frames_01",
+    "hat": null,
+    "outfit": null,
+    "top": "namuhekam_male_polo_shirt",
+    "bottom": "toigo_wool_pants",
+    "shoes": "shoes03",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "older_woman",
+   "label": "Older, cardigan look",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.8462,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.8,
+      "asian": 0.0,
+      "caucasian": 0.2
+     }
+    },
+    "skin": {
+     "tone": 0.78,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "toigo_curled_under_bob",
+     "color": "#e6e3de"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": "spamrakuen_sagerfrogs_glasses_02",
+    "hat": null,
+    "outfit": null,
+    "top": "toigo_fisherman_sweater",
+    "bottom": "toigo_wool_pants",
+    "shoes": "toigo_ankle_boots_female",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "mid_man",
+   "label": "Stubble, long sleeves",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.5462,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.3,
+      "asian": 0.3,
+      "caucasian": 0.4
+     }
+    },
+    "skin": {
+     "tone": 0.5,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "short03",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow004",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "paint_stubble",
+    "glasses": null,
+    "hat": null,
+    "outfit": "male_casualsuit02",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes02",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "mid_woman",
+   "label": "Sporty, ponytail",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.5308,
+     "muscle": 0.6,
+     "weight": 0.5,
+     "race": {
+      "african": 0.35,
+      "asian": 0.15,
+      "caucasian": 0.5
+     }
+    },
+    "skin": {
+     "tone": 0.45,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "ponytail01",
+     "color": "#3a281d"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "female_sportsuit01",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes02",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "creative",
+   "label": "Dungarees, teal hair",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.5154,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.1,
+      "asian": 0.2,
+      "caucasian": 0.7
+     }
+    },
+    "skin": {
+     "tone": 0.2,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "cortu_short_messy_hair",
+     "color": "#1f9a94"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": "toigo_round_glasses_leopard",
+    "hat": null,
+    "outfit": "male_worksuit01",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_mj_cloth_shoes",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "summer",
+   "label": "Summer, braid",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.5,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.05,
+      "asian": 0.05,
+      "caucasian": 0.9
+     }
+    },
+    "skin": {
+     "tone": 0.12,
+     "color": null
+    },
+    "eyes": "green",
+    "face": {},
+    "hair": {
+     "style": "braid01",
+     "color": "#6f3420"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": null,
+    "top": "toigo_keyhole_tank_top",
+    "bottom": "cortu_jeans_shorts",
+    "shoes": "shoes05",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "professor",
+   "label": "Bald, moustache",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.7538,
+     "muscle": 0.5,
+     "weight": 0.65,
+     "race": {
+      "african": 0.1,
+      "asian": 0.1,
+      "caucasian": 0.8
+     }
+    },
+    "skin": {
+     "tone": 0.25,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": null,
+     "color": "#5e4029"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": "rehmanpolanski_moustache_viking",
+    "beard": null,
+    "glasses": "spamrakuen_sagerfrogs_glasses_03",
+    "hat": null,
+    "outfit": "male_casualsuit01",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes01",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "grandma_dress",
+   "label": "Older, midi dress",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.8769,
+     "muscle": 0.5,
+     "weight": 0.6,
+     "race": {
+      "african": 0.0,
+      "asian": 0.0,
+      "caucasian": 1.0
+     }
+    },
+    "skin": {
+     "tone": 0.05,
+     "color": null
+    },
+    "eyes": "grey",
+    "face": {},
+    "hair": {
+     "style": "bob01",
+     "color": "#e6e3de"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "toigo_halter_dress_midi",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_ankle_boots_female",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.2,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "fedora",
+   "label": "Fedora, jawline beard",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.6538,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.9,
+      "asian": 0.0,
+      "caucasian": 0.1
+     }
+    },
+    "skin": {
+     "tone": 0.95,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "short02",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "beard_short",
+    "glasses": null,
+    "hat": "fedora01",
+    "outfit": "male_casualsuit05",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes03",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "long_skirt",
+   "label": "Long skirt",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.5692,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.0,
+      "asian": 0.9,
+      "caucasian": 0.1
+     }
+    },
+    "skin": {
+     "tone": 0.18,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "toigo_inverted_bob",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": null,
+    "top": "toigo_turtleneck_halter_top",
+    "bottom": "toigo_long_full_skirt",
+    "shoes": "toigo_ankle_boots_female",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.3,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "sweater",
+   "label": "Sweater, auburn bob",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.6769,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.0,
+      "asian": 0.0,
+      "caucasian": 1.0
+     }
+    },
+    "skin": {
+     "tone": 0.08,
+     "color": null
+    },
+    "eyes": "green",
+    "face": {},
+    "hair": {
+     "style": "bob02",
+     "color": "#6f3420"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": null,
+    "top": "toigo_fisherman_sweater",
+    "bottom": "cortu_cargo_pants",
+    "shoes": "toigo_ankle_boots_female",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "kimono",
+   "label": "Kimono",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.6154,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.0,
+      "asian": 1.0,
+      "caucasian": 0.0
+     }
+    },
+    "skin": {
+     "tone": 0.2,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "toigo_blunt_bob_with_bangs",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "mindfront_kimono",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_mj_cloth_shoes",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.4,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "hero",
+   "label": "Hero, hood",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.5385,
+     "muscle": 0.8,
+     "weight": 0.5,
+     "race": {
+      "african": 0.2,
+      "asian": 0.1,
+      "caucasian": 0.7
+     }
+    },
+    "skin": {
+     "tone": 0.3,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "short02",
+     "color": "#3a281d"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": "culturalibre_hero-heroine_hood_1",
+    "outfit": "culturalibre_hero_suit_1",
+    "top": null,
+    "bottom": null,
+    "shoes": "culturalibre_hero_boots_1",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "heroine",
+   "label": "Heroine, mask",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.5231,
+     "muscle": 0.65,
+     "weight": 0.5,
+     "race": {
+      "african": 0.1,
+      "asian": 0.2,
+      "caucasian": 0.7
+     }
+    },
+    "skin": {
+     "tone": 0.25,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "ponytail01",
+     "color": "#9a4524"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": "culturalibre_hero_mask_4",
+    "hat": null,
+    "outfit": "culturalibre_heroine_suit_2",
+    "top": null,
+    "bottom": null,
+    "shoes": "culturalibre_heroine_boots_1",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "space_officer",
+   "label": "Space officer",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.5769,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.4,
+      "asian": 0.2,
+      "caucasian": 0.4
+     }
+    },
+    "skin": {
+     "tone": 0.55,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "cortu_straight_bangs",
+     "color": "#c8ccd4"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": "visor_band",
+    "hat": null,
+    "outfit": "thegreatengineer_galactic_warrior_uniform",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes02",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "cyborg",
+   "label": "Cyborg",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.5615,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.1,
+      "asian": 0.3,
+      "caucasian": 0.6
+     }
+    },
+    "skin": {
+     "tone": 0.3,
+     "color": "#9a9aa2"
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": null,
+     "color": "#3a281d"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "joachip_cyborg_suit",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes02",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "monk",
+   "label": "Monk",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.7846,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.1,
+      "asian": 0.1,
+      "caucasian": 0.8
+     }
+    },
+    "skin": {
+     "tone": 0.3,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": null,
+     "color": "#8e8a86"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "paint_beard_short",
+    "glasses": null,
+    "hat": "donitz_monk_robe_hood",
+    "outfit": "donitz_monk_robe",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_mj_cloth_shoes",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "viking",
+   "label": "Viking",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.6154,
+     "muscle": 0.75,
+     "weight": 0.5,
+     "race": {
+      "african": 0.0,
+      "asian": 0.0,
+      "caucasian": 1.0
+     }
+    },
+    "skin": {
+     "tone": 0.05,
+     "color": null
+    },
+    "eyes": "lightblue",
+    "face": {},
+    "hair": {
+     "style": "short04",
+     "color": "#8c6c45"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "paint_beard_short",
+    "glasses": null,
+    "hat": "culturalibre_minotaur_horns",
+    "outfit": null,
+    "top": "rehmanpolanski_viking_tunic",
+    "bottom": "rehmanpolanski_viking_pants",
+    "shoes": "rehmanpolanski_viking_boots",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "alien",
+   "label": "Alien, visor",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.5385,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.3,
+      "asian": 0.3,
+      "caucasian": 0.4
+     }
+    },
+    "skin": {
+     "tone": 0.3,
+     "color": "#3fa3a0"
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": null,
+     "color": "#3a281d"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": "visor_slit",
+    "hat": null,
+    "outfit": "matcreator_mc-skinsuit_2022",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes02",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "faun",
+   "label": "Faun, fluted dress",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.5077,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.1,
+      "asian": 0.1,
+      "caucasian": 0.8
+     }
+    },
+    "skin": {
+     "tone": 0.15,
+     "color": "#5fa85a"
+    },
+    "eyes": "green",
+    "face": {},
+    "hair": {
+     "style": "long01",
+     "color": "#7a3fb8"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": "culturalibre_faun_horns",
+    "outfit": "toigo_halter_dress_with_fluted_skirt",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes02",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0.5,
+      "color": "#3f9a3a"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "tiered_dress",
+   "label": "Tiered dress, curls",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.45,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.85,
+      "asian": 0,
+      "caucasian": 0.15
+     }
+    },
+    "skin": {
+     "tone": 0.75,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "cortu_strawberry_cloud_hair",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "toigo_dress_with_tiered_skirt",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_mj_cloth_shoes",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.4,
+      "color": "#8a2a35"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "cloche",
+   "label": "Cloche hat, shift dress",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.75,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0,
+      "asian": 0,
+      "caucasian": 1
+     }
+    },
+    "skin": {
+     "tone": 0.05,
+     "color": null
+    },
+    "eyes": "blue",
+    "face": {},
+    "hair": {
+     "style": "toigo_curled_under_bob_with_bangs",
+     "color": "#8e8a86"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": "spamrakuen_sagerfrogs_glasses_04",
+    "hat": "aethelraed_unraed_cloche_hat",
+    "outfit": "toigo_shift_dress",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes04",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.3,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "white_tee",
+   "label": "White T-shirt, goatee",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.4,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0,
+      "asian": 0.9,
+      "caucasian": 0.1
+     }
+    },
+    "skin": {
+     "tone": 0.25,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "cortu_shaggy_green_hair",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow005",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "beard_goatee",
+    "glasses": null,
+    "hat": null,
+    "outfit": "male_casualsuit06",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes02",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "tilted_fedora",
+   "label": "Tilted fedora, striped shirt",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.55,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.9,
+      "asian": 0,
+      "caucasian": 0.1
+     }
+    },
+    "skin": {
+     "tone": 0.8,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "afro01",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "paint_stubble",
+    "glasses": null,
+    "hat": "fedora_cocked",
+    "outfit": "male_casualsuit03",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_ankle_boots_male",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "lace_dress",
+   "label": "Lace dress, long hair",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.4,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.1,
+      "asian": 0.1,
+      "caucasian": 0.8
+     }
+    },
+    "skin": {
+     "tone": 0.2,
+     "color": null
+    },
+    "eyes": "green",
+    "face": {},
+    "hair": {
+     "style": "faydaen_hair_1",
+     "color": "#6f3420"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "toigo_bodice_dress_with_lace_ruffle_skirt",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_ankle_boots_female",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0.3,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.4,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "full_skirt",
+   "label": "Full-skirt dress",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.55,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.1,
+      "asian": 0.8,
+      "caucasian": 0.1
+     }
+    },
+    "skin": {
+     "tone": 0.3,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "toigo_inverted_bob_with_bangs",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "toigo_camisole_dress_with_full_skirt",
+    "top": null,
+    "bottom": null,
+    "shoes": "shoes06",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.5,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "harem",
+   "label": "Bodice and harem trousers",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.35,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.5,
+      "asian": 0.1,
+      "caucasian": 0.4
+     }
+    },
+    "skin": {
+     "tone": 0.5,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "braid01",
+     "color": "#3a281d"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": null,
+    "top": "toigo_bodice-style_top",
+    "bottom": "toigo_harem_pants",
+    "shoes": "toigo_mj_cloth_shoes",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0.4,
+      "color": "#b07a3a"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "santa",
+   "label": "Santa hat, long beard",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.9,
+     "muscle": 0.5,
+     "weight": 0.75,
+     "race": {
+      "african": 0,
+      "asian": 0,
+      "caucasian": 1
+     }
+    },
+    "skin": {
+     "tone": 0.1,
+     "color": null
+    },
+    "eyes": "blue",
+    "face": {},
+    "hair": {
+     "style": "short04",
+     "color": "#e6e3de"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": "rehmanpolanski_moustache_viking",
+    "beard": "rehmanpolanski_beard_viking",
+    "glasses": null,
+    "hat": "joepal_xmas_cap",
+    "outfit": "male_casualsuit05",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_ankle_boots_male",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "dragon_knight",
+   "label": "Warrior, red crest",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.5,
+     "muscle": 0.75,
+     "weight": 0.5,
+     "race": {
+      "african": 0.1,
+      "asian": 0,
+      "caucasian": 0.9
+     }
+    },
+    "skin": {
+     "tone": 0.15,
+     "color": null
+    },
+    "eyes": "grey",
+    "face": {},
+    "hair": {
+     "style": "short04",
+     "color": "#6f3420"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "beard_short",
+    "glasses": null,
+    "hat": "culturalibre_warrior_helmet",
+    "outfit": null,
+    "top": "rehmanpolanski_viking_tunic",
+    "bottom": "rehmanpolanski_viking_pants",
+    "shoes": "rehmanpolanski_viking_boots",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "skull_rider",
+   "label": "Horned skull helmet",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.4,
+     "muscle": 0.7,
+     "weight": 0.5,
+     "race": {
+      "african": 0.3,
+      "asian": 0.3,
+      "caucasian": 0.4
+     }
+    },
+    "skin": {
+     "tone": 0.4,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "short02",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": "culturalibre_skull_helmet",
+    "outfit": "matcreator_mc-skinsuit_2022",
+    "top": null,
+    "bottom": null,
+    "shoes": "culturalibre_heroine_boots_4",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "masked_hero",
+   "label": "Hero, domino mask",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.35,
+     "muscle": 0.8,
+     "weight": 0.5,
+     "race": {
+      "african": 0.6,
+      "asian": 0.1,
+      "caucasian": 0.3
+     }
+    },
+    "skin": {
+     "tone": 0.6,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "culturalibre_hair_05",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": "culturalibre_hero_mask_3",
+    "hat": null,
+    "outfit": "culturalibre_hero_suit_3",
+    "top": null,
+    "bottom": null,
+    "shoes": "culturalibre_hero_boots_2",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "devil",
+   "label": "Devil mask, red suit",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.4,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0,
+      "asian": 0.2,
+      "caucasian": 0.8
+     }
+    },
+    "skin": {
+     "tone": 0.1,
+     "color": null
+    },
+    "eyes": "green",
+    "face": {},
+    "hair": {
+     "style": "toigo_blunt_bob",
+     "color": "#9a4524"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": "culturalibre_heroine_mask_1",
+    "outfit": "culturalibre_hero_suit_2",
+    "top": null,
+    "bottom": null,
+    "shoes": "culturalibre_heroine_boots_4",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0.6,
+      "color": "#8a1020"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "tiered_skirt",
+   "label": "Tiered skirt, camisole",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.3,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.2,
+      "asian": 0.5,
+      "caucasian": 0.3
+     }
+    },
+    "skin": {
+     "tone": 0.35,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "ponytail01",
+     "color": "#3a281d"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": null,
+    "top": "toigo_camisole_top",
+    "bottom": "toigo_tiered_skirt",
+    "shoes": "toigo_ankle_boots_female",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "wizard",
+   "label": "Wizard, starry robe",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.95,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.0,
+      "asian": 0.1,
+      "caucasian": 0.9
+     }
+    },
+    "skin": {
+     "tone": 0.2,
+     "color": null
+    },
+    "eyes": "blue",
+    "face": {},
+    "hair": {
+     "style": null,
+     "color": "#d8d6d2"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "rehmanpolanski_beard_viking",
+    "glasses": null,
+    "hat": "ours_wizard_hood",
+    "outfit": "ours_wizard_robe",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_mj_cloth_shoes",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "sorceress",
+   "label": "Sorceress, purple robe",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.45,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.2,
+      "asian": 0.1,
+      "caucasian": 0.7
+     }
+    },
+    "skin": {
+     "tone": 0.3,
+     "color": null
+    },
+    "eyes": "green",
+    "face": {},
+    "hair": {
+     "style": "long01",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": "ours_sorcerer_hood",
+    "outfit": "ours_sorcerer_robe",
+    "top": null,
+    "bottom": null,
+    "shoes": "toigo_mj_cloth_shoes",
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0.5,
+      "color": "#5a3a8c"
+     },
+     "lips": {
+      "amount": 0.5,
+      "color": "#6a2050"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "astronaut",
+   "label": "Space suit",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 0,
+     "age": 0.35,
+     "muscle": 0.5,
+     "weight": 0.5,
+     "race": {
+      "african": 0.1,
+      "asian": 0.6,
+      "caucasian": 0.3
+     }
+    },
+    "skin": {
+     "tone": 0.35,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "toigo_blunt_bob",
+     "color": "#1d1a18"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": null,
+    "glasses": null,
+    "hat": null,
+    "outfit": "ours_space_suit",
+    "top": null,
+    "bottom": null,
+    "shoes": null,
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  },
+  {
+   "id": "neon",
+   "label": "Neon bodysuit",
+   "recipe": {
+    "version": 1,
+    "editor": "AvatarEditor",
+    "name": "",
+    "body": {
+     "gender": 1,
+     "age": 0.3,
+     "muscle": 0.65,
+     "weight": 0.5,
+     "race": {
+      "african": 0.7,
+      "asian": 0.1,
+      "caucasian": 0.2
+     }
+    },
+    "skin": {
+     "tone": 0.7,
+     "color": null
+    },
+    "eyes": "brown",
+    "face": {},
+    "hair": {
+     "style": "short02",
+     "color": "#141210"
+    },
+    "eyebrows": "eyebrow001",
+    "eyebrowHeight": 0.8,
+    "moustache": null,
+    "beard": "paint_stubble",
+    "glasses": null,
+    "hat": null,
+    "outfit": "ours_neon_suit",
+    "top": null,
+    "bottom": null,
+    "shoes": null,
+    "makeup": {
+     "eyeshadow": {
+      "amount": 0,
+      "color": "#7a5a8c"
+     },
+     "lips": {
+      "amount": 0,
+      "color": "#a8323e"
+     },
+     "nails": {
+      "amount": 0,
+      "color": "#b0283a"
+     }
+    }
+   }
+  }
+ ]
+}

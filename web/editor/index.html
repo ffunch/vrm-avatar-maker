@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VRM Avatar Maker</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  :root { --bg: #26282b; --panel: #1b1c1f; --line: #34363b; --fg: #ececec; --muted: #9a9ca3; --accent: #e0a458; --bad: #e26a5a; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 14px/1.35 system-ui, sans-serif; }
+  #app { display: flex; height: 100%; }
+  #panel { width: 340px; flex: none; overflow-y: auto; background: var(--panel); border-right: 1px solid var(--line); padding: 10px 14px 115px; }
+  #view { flex: 1; position: relative; min-width: 0; }
+  #view canvas { display: block; width: 100%; height: 100%; }
+  h1 { font-size: 17px; margin: 4px 0 10px; }
+  details { border-top: 1px solid var(--line); padding: 6px 0; }
+  summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
+  label.slider { display: block; margin: 8px 0 2px; color: var(--muted); }
+  label.slider span { float: right; color: var(--fg); }
+  input[type=range] { width: 100%; }
+  .sub { color: var(--muted); margin: 10px 0 4px; font-size: 13px; }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .tile { background: #2a2c31; border: 2px solid transparent; border-radius: 6px; color: var(--fg); padding: 2px; cursor: pointer; font-size: 11px; min-height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .tile img { width: 100%; aspect-ratio: 1; object-fit: contain; background: #111; border-radius: 4px; }
+  .tile span { display: block; margin-top: 2px; text-align: center; line-height: 1.15; }
+  .tile.on { border-color: var(--accent); }
+  .swatches { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .swatch { width: 28px; height: 28px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 0; background-size: cover; background-position: center; }
+  .swatch.on { border-color: var(--accent); outline: 2px solid var(--panel); outline-offset: -4px; }
+  .swatch.natural { background: conic-gradient(#3b2a20, #c9a66b, #8f8b88, #3b2a20); }
+  input[type=color] { width: 32px; height: 28px; border: none; background: none; padding: 0; cursor: pointer; }
+  .makeup { display: grid; grid-template-columns: 90px 1fr 34px; align-items: center; gap: 8px; margin: 6px 0; }
+  #tone { background: linear-gradient(to right, var(--tone-light), var(--tone-dark)); border-radius: 4px; height: 10px; -webkit-appearance: none; appearance: none; }
+  #tone::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid #333; }
+  #bar { position: fixed; left: 0; bottom: 0; width: 340px; background: var(--panel); border-top: 1px solid var(--line); padding: 10px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  #bar input[type=text] { grid-column: 1 / -1; background: #2a2c31; border: 1px solid var(--line); color: var(--fg); padding: 6px 8px; border-radius: 6px; }
+  #fixlink { grid-column: 1 / -1; color: var(--muted); font-size: 12px; text-align: center; }
+  button.main { background: var(--accent); color: #1b1c1f; border: none; border-radius: 6px; padding: 8px; font-weight: 600; cursor: pointer; }
+  button.plain { background: #2a2c31; color: var(--fg); border: 1px solid var(--line); border-radius: 6px; padding: 8px; cursor: pointer; }
+  #status { position: absolute; left: 12px; bottom: 10px; color: var(--muted); font-size: 12px; }
+  #status .bad { color: var(--bad); }
+  #camera { position: absolute; right: 12px; top: 12px; display: flex; gap: 6px; }
+  #camera button { background: #000a; color: var(--fg); border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+  #camera #poses { display: flex; gap: 6px; margin-right: 6px; }
+  #camera #poses[hidden] { display: none; }
+  #camera button.on, #camera #preview.active { background: var(--accent); color: #1b1c1f; border-color: var(--accent); }
+  #expr-row { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
+  #expr-row select { flex: 1; background: #2a2c31; color: var(--fg); border: 1px solid var(--line); border-radius: 6px; padding: 4px; }
+  #loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); }
+  @media (max-width: 700px) {
+    #app { flex-direction: column-reverse; }
+    #panel { width: 100%; height: 55%; padding-bottom: 110px; }
+    #bar { width: 100%; }
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "../vendor/three-0.183.2/three.module.min.js",
+  "three/addons/": "../vendor/three-0.183.2/addons/",
+  "@pixiv/three-vrm": "../vendor/three-vrm-3.5.1/three-vrm.module.min.js"
+} }
+</script>
+</head>
+<body>
+<div id="app">
+  <div id="panel">
+    <h1>VRM Avatar Maker</h1>
+    <details id="start">
+      <summary>Start from a ready-made avatar</summary>
+      <div class="tiles" id="presets"></div>
+    </details>
+    <details open>
+      <summary>Body</summary>
+      <label class="slider">Female – Male <span id="v-gender"></span><input type="range" id="gender" min="0" max="1" step="0.01"></label>
+      <label class="slider">Age <span id="v-age"></span><input type="range" id="age" min="0.1875" max="1" step="0.005"></label>
+      <label class="slider">Muscle <span id="v-muscle"></span><input type="range" id="muscle" min="0" max="1" step="0.01"></label>
+      <label class="slider">Weight <span id="v-weight"></span><input type="range" id="weight" min="0" max="1" step="0.01"></label>
+      <div class="sub">Facial features</div>
+      <label class="slider">African <span id="v-african"></span><input type="range" id="african" min="0" max="1" step="0.01"></label>
+      <label class="slider">Asian <span id="v-asian"></span><input type="range" id="asian" min="0" max="1" step="0.01"></label>
+      <label class="slider">European <span id="v-caucasian"></span><input type="range" id="caucasian" min="0" max="1" step="0.01"></label>
+    </details>
+    <details open>
+      <summary>Skin and eyes</summary>
+      <label class="slider">Skin tone <input type="range" id="tone" min="0" max="1" step="0.01"></label>
+      <div class="sub">Skin color</div>
+      <div class="swatches" id="skin-color"></div>
+      <div class="sub">Eye color</div>
+      <div class="swatches" id="eyes"></div>
+    </details>
+    <details open>
+      <summary>Hair</summary>
+      <div class="sub">Color</div>
+      <div class="swatches" id="hair-color"></div>
+      <div class="sub">Style</div>
+      <div class="tiles" id="cat-hair"></div>
+    </details>
+    <details>
+      <summary>Face shape</summary>
+      <div id="face-shape"></div>
+    </details>
+    <details>
+      <summary>Beard, glasses, eyebrows</summary>
+      <div class="sub">Moustache</div>
+      <div class="tiles" id="cat-moustache"></div>
+      <div class="sub">Beard</div>
+      <div class="tiles" id="cat-beard"></div>
+      <div class="sub">Glasses and masks</div>
+      <div class="tiles" id="cat-glasses"></div>
+      <div class="sub">Eyebrows</div>
+      <label class="slider">Height <span id="v-brow-height"></span><input type="range" id="brow-height" min="-0.5" max="1.5" step="0.1"></label>
+      <div class="tiles" id="cat-eyebrows"></div>
+    </details>
+    <details>
+      <summary>Hat</summary>
+      <div class="tiles" id="cat-hat"></div>
+    </details>
+    <details>
+      <summary>Makeup</summary>
+      <div class="makeup"><span>Eye shadow</span><input type="range" id="mk-eyeshadow" min="0" max="1" step="0.01"><input type="color" id="mc-eyeshadow"></div>
+      <div class="makeup"><span>Lips</span><input type="range" id="mk-lips" min="0" max="1" step="0.01"><input type="color" id="mc-lips"></div>
+      <div class="makeup"><span>Nails</span><input type="range" id="mk-nails" min="0" max="1" step="0.01"><input type="color" id="mc-nails"></div>
+    </details>
+    <details>
+      <summary>Clothes</summary>
+      <div class="sub">Outfit</div>
+      <div class="tiles" id="cat-outfit"></div>
+      <div class="sub">Top</div>
+      <div class="tiles" id="cat-top"></div>
+      <div class="sub">Bottom</div>
+      <div class="tiles" id="cat-bottom"></div>
+      <div class="sub">Shoes</div>
+      <div class="tiles" id="cat-shoes"></div>
+    </details>
+    <details>
+      <summary>Expressions</summary>
+      <div id="expr-row"><select id="expr"><option value="">Neutral</option></select>
+        <label><input type="checkbox" id="live"> Blink and talk</label></div>
+    </details>
+  </div>
+  <div id="view">
+    <div id="loading">Loading…</div>
+    <div id="camera">
+      <span id="poses" hidden><button data-pose="seated" class="on">Seated</button><button data-pose="standing">Standing</button></span>
+      <button id="preview" title="See the downloaded avatar moving: hair physics, eyes that follow you, blinking">Preview</button>
+      <button data-cam="face">Face</button><button data-cam="body">Body</button>
+    </div>
+    <div id="status"></div>
+  </div>
+</div>
+<div id="bar">
+  <input type="text" id="name" placeholder="Avatar name" maxlength="60">
+  <button class="main" id="download">Download VRM</button>
+  <button class="plain" id="open">Open VRM…</button>
+  <input type="file" id="file" accept=".vrm,.glb" hidden>
+  <a id="fixlink" href="../fix/" target="_blank">Avatar from elsewhere too big? Fix my VRM</a>
+</div>
+<script type="module" src="./editor.js"></script>
+</body>
+</html>

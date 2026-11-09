@@ -1,0 +1,15 @@
+{
+ "aa": [["aa_02", 1.0]],
+ "ih": [["y_iy_ih_ix_06", 1.0]],
+ "ou": [["w_uw_07", 1.0]],
+ "ee": [["ey_eh_uh_04", 1.0]],
+ "oh": [["ow_08", 1.0]],
+ "blink": [["eyeBlinkLeft", 1.0], ["eyeBlinkRight", 1.0]],
+ "blink_left": [["eyeBlinkLeft", 1.0]],
+ "blink_right": [["eyeBlinkRight", 1.0]],
+ "happy": [["mouthSmileLeft", 1.0], ["mouthSmileRight", 1.0], ["cheekSquintLeft", 0.6], ["cheekSquintRight", 0.6], ["eyeSquintLeft", 0.3], ["eyeSquintRight", 0.3]],
+ "relaxed": [["mouthSmileLeft", 0.4], ["mouthSmileRight", 0.4], ["eyeSquintLeft", 0.2], ["eyeSquintRight", 0.2]],
+ "sad": [["mouthFrownLeft", 1.0], ["mouthFrownRight", 1.0], ["browInnerUp", 0.8]],
+ "angry": [["browDownLeft", 1.0], ["browDownRight", 1.0], ["mouthPressLeft", 0.6], ["mouthPressRight", 0.6]],
+ "surprised": [["browInnerUp", 1.0], ["browOuterUpLeft", 1.0], ["browOuterUpRight", 1.0], ["eyeWideLeft", 0.8], ["eyeWideRight", 0.8], ["jawOpen", 0.4]]
+}
