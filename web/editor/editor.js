@@ -55,7 +55,8 @@ function setCamera(which) {
   lastCamera = which;
   const head = previewing ? preview.head() : null;  // the preview may be seated: aim at its real head
   const fh = head ? head.y + 0.06 : faceHeight, fz = head ? head.z : 0;
-  const [pos, target] = which === "face" ? [[0.25, fh + 0.04, fz + 0.95], [0, fh, fz]] : [[0.9, 1.25, 3.4], [0, 0.95, 0]];
+  const k = camera.aspect < 1.2 ? 1.2 : 1;  // a narrow view (phone upright): a little farther, so the head clears the buttons
+  const [pos, target] = which === "face" ? [[0.25, fh + 0.04, fz + 0.95], [0, fh, fz]] : [[0.9 * k, 1.25, 3.4 * k], [0, 0.95, 0]];
   camera.position.set(...pos); controls.target.set(...target); controls.update();
 }
 function resize() {
@@ -94,7 +95,7 @@ bodyGeom.setAttribute("uv", new THREE.BufferAttribute(base.body.uv, 2));
 bodyGeom.setIndex(new THREE.BufferAttribute(base.body.indices, 1));
 addMorphs(bodyGeom, bodySource, base.faceShapes);
 const skinCanvas = document.createElement("canvas");
-skinCanvas.width = skinCanvas.height = 2048;
+skinCanvas.width = skinCanvas.height = 1024;  // the view; the download composes its own at 2048 (paintSkin)
 const skinTexture = new THREE.CanvasTexture(skinCanvas);
 skinTexture.colorSpace = THREE.SRGBColorSpace;
 const bodyMesh = new THREE.Mesh(bodyGeom, new THREE.MeshStandardMaterial({ roughness: 0.7, map: skinTexture }));
@@ -137,12 +138,15 @@ async function makeWorn(id, slot) {
   const entry = { item, mesh: new THREE.Mesh(g, material), fitted: new Float32Array(item.info.vertexCount * 3) };
   entry.mesh.updateMorphTargets();
   const textureFile = slot === "eyes" ? index.eyeColors[recipe.eyes] : item.info.texture;
-  if (textureFile) await setItemTexture(entry, A + "textures/" + textureFile, slot);
+  if (textureFile) await setItemTexture(entry, textureFile, slot);
   return entry;
 }
 
-async function setItemTexture(entry, url, slot) {
-  const img = await bitmap(url);
+// The 3D view uses textures/view/ (at most 1024 px, a third of the bytes); the download reads the full
+// texture from entry.url (exportVRM), fetched only then.
+async function setItemTexture(entry, file, slot) {
+  const url = A + "textures/" + file;
+  const img = await bitmap(A + "textures/view/" + file);
   const size = Math.min(1024, img.width);
   const canvas = document.createElement("canvas");
   canvas.width = size; canvas.height = Math.round(img.height * size / img.width);
@@ -361,57 +365,65 @@ async function beardShadeCanvas() {
   })();
   return beardShade;
 }
-const layer = document.createElement("canvas"); layer.width = layer.height = 2048;
 let skinJob = 0;
 async function composeSkin() {
   const job = ++skinJob;
+  const done = await paintSkin(skinCanvas, "textures/view/", () => job === skinJob);
+  if (!done) return;
+  skinTexture.needsUpdate = true;
+  document.documentElement.style.setProperty("--tone-light", rgb(done.light.swatch));
+  document.documentElement.style.setProperty("--tone-dark", rgb(done.dark.swatch));
+}
+/** The skin for the recipe into `canvas` (square, any size) from the textures in `folder`. Returns
+ * the two skins used, or null if `current()` turned false while loading (a newer request). */
+async function paintSkin(canvas, folder, current = () => true) {
+  const S = canvas.width;
+  const layer = document.createElement("canvas"); layer.width = layer.height = S;
   const bucket = skinBucket(recipe.body), gender = skinGender(recipe.body);
   const light = index.skins[`${bucket}_caucasian_${gender}`], dark = index.skins[`${bucket}_african_${gender}`];
-  const [lightImg, darkImg] = await Promise.all([bitmap(A + "textures/" + light.texture), bitmap(A + "textures/" + dark.texture)]);
+  const [lightImg, darkImg] = await Promise.all([bitmap(A + folder + light.texture), bitmap(A + folder + dark.texture)]);
   const masks = {};
   for (const name of ["eyeshadow", "lips", "nails"]) if (recipe.makeup[name].amount > 0) masks[name] = await maskCanvas(name);
   const beardPaint = paintOf("beard", recipe.beard), beardMask = beardPaint ? await maskCanvas("beard") : null;
   const beardShading = beardPaint ? await beardShadeCanvas() : null;
-  if (job !== skinJob) return;
-  const ctx = skinCanvas.getContext("2d");
+  if (!current()) return null;
+  const ctx = canvas.getContext("2d");
   ctx.globalCompositeOperation = "source-over";
-  ctx.globalAlpha = 1; ctx.drawImage(lightImg, 0, 0, 2048, 2048);
-  ctx.globalAlpha = recipe.skin.tone; ctx.drawImage(darkImg, 0, 0, 2048, 2048);
+  ctx.globalAlpha = 1; ctx.drawImage(lightImg, 0, 0, S, S);
+  ctx.globalAlpha = recipe.skin.tone; ctx.drawImage(darkImg, 0, 0, S, S);
   // Mid tones: a straight cross-fade of the light and dark textures looks ashy gray. A warm soft-light
   // tint, strongest halfway, makes it a natural brown and keeps the texture's detail.
   const warm = Math.sin(Math.PI * recipe.skin.tone) * 0.45;
   if (warm > 0.005 && !recipe.skin.color) {
-    ctx.globalAlpha = warm; ctx.globalCompositeOperation = "soft-light"; ctx.fillStyle = "#c07548"; ctx.fillRect(0, 0, 2048, 2048);
+    ctx.globalAlpha = warm; ctx.globalCompositeOperation = "soft-light"; ctx.fillStyle = "#c07548"; ctx.fillRect(0, 0, S, S);
     ctx.globalCompositeOperation = "source-over";
   }
   if (recipe.skin.color) {  // fantasy skin: take the hue, keep the texture's light and shade
     ctx.fillStyle = recipe.skin.color;
-    ctx.globalAlpha = 0.9; ctx.globalCompositeOperation = "color"; ctx.fillRect(0, 0, 2048, 2048);
-    ctx.globalAlpha = 0.25; ctx.globalCompositeOperation = "multiply"; ctx.fillRect(0, 0, 2048, 2048);
+    ctx.globalAlpha = 0.9; ctx.globalCompositeOperation = "color"; ctx.fillRect(0, 0, S, S);
+    ctx.globalAlpha = 0.25; ctx.globalCompositeOperation = "multiply"; ctx.fillRect(0, 0, S, S);
     ctx.globalCompositeOperation = "source-over";
   }
   const lctx = layer.getContext("2d");
   if (beardMask) {  // hair over the skin in the hair color: a full short beard, or lighter as stubble
-    lctx.globalCompositeOperation = "source-over"; lctx.clearRect(0, 0, 2048, 2048);
-    lctx.drawImage(beardMask, 0, 0, 2048, 2048);
-    lctx.globalCompositeOperation = "source-in"; lctx.fillStyle = facialHairColor(); lctx.fillRect(0, 0, 2048, 2048);
-    lctx.globalCompositeOperation = "multiply"; lctx.drawImage(beardShading, 0, 0, 2048, 2048);
-    lctx.globalCompositeOperation = "destination-in"; lctx.drawImage(beardMask, 0, 0, 2048, 2048);
+    lctx.globalCompositeOperation = "source-over"; lctx.clearRect(0, 0, S, S);
+    lctx.drawImage(beardMask, 0, 0, S, S);
+    lctx.globalCompositeOperation = "source-in"; lctx.fillStyle = facialHairColor(); lctx.fillRect(0, 0, S, S);
+    lctx.globalCompositeOperation = "multiply"; lctx.drawImage(beardShading, 0, 0, S, S);
+    lctx.globalCompositeOperation = "destination-in"; lctx.drawImage(beardMask, 0, 0, S, S);
     ctx.globalAlpha = beardPaint.amount; ctx.globalCompositeOperation = "source-over"; ctx.drawImage(layer, 0, 0);
     ctx.globalAlpha = beardPaint.amount * 0.3; ctx.globalCompositeOperation = "multiply"; ctx.drawImage(layer, 0, 0);
   }
   for (const [name, mask] of Object.entries(masks)) {
     const { amount, color } = recipe.makeup[name];
-    lctx.globalCompositeOperation = "source-over"; lctx.clearRect(0, 0, 2048, 2048);
-    lctx.drawImage(mask, 0, 0, 2048, 2048);
-    lctx.globalCompositeOperation = "source-in"; lctx.fillStyle = color; lctx.fillRect(0, 0, 2048, 2048);
+    lctx.globalCompositeOperation = "source-over"; lctx.clearRect(0, 0, S, S);
+    lctx.drawImage(mask, 0, 0, S, S);
+    lctx.globalCompositeOperation = "source-in"; lctx.fillStyle = color; lctx.fillRect(0, 0, S, S);
     ctx.globalAlpha = amount; ctx.globalCompositeOperation = "color"; ctx.drawImage(layer, 0, 0);
     ctx.globalAlpha = amount * 0.55; ctx.globalCompositeOperation = "multiply"; ctx.drawImage(layer, 0, 0);
   }
   ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over";
-  skinTexture.needsUpdate = true;
-  document.documentElement.style.setProperty("--tone-light", rgb(light.swatch));
-  document.documentElement.style.setProperty("--tone-dark", rgb(dark.swatch));
+  return { light, dark };
 }
 const rgb = (c) => `rgb(${c.join(",")})`;
 
@@ -453,7 +465,7 @@ function tile(label, thumb, on, click) {
   b.className = "tile" + (on ? " on" : ""); b.title = label;
   // Thumbnails load when their section is opened (showThumbs): lazy loading alone still fetches
   // images inside closed <details>.
-  b.innerHTML = (thumb ? `<img data-src="${thumb}" alt="">` : "") + `<span>${label}</span>`;
+  b.innerHTML = (thumb ? `<img loading="lazy" data-src="${thumb}" alt="">` : "") + `<span>${label}</span>`;
   b.addEventListener("click", click);
   return b;
 }
@@ -508,7 +520,7 @@ function renderSwatches() {
     b.style.backgroundPosition = `${14 - 0.703 * size}px ${14 - 0.298 * size}px`;
     b.addEventListener("click", async () => {
       recipe.eyes = name; renderSwatches();
-      const entry = worn.get("eyes"); if (entry) await setItemTexture(entry, A + "textures/" + file, "eyes");
+      const entry = worn.get("eyes"); if (entry) await setItemTexture(entry, file, "eyes");
     });
     eyes.append(b);
   }
@@ -627,6 +639,9 @@ document.querySelectorAll("#camera button[data-cam]").forEach((b) => b.addEventL
 
 // ---- Export / import -------------------------------------------------------------------------
 async function exportVRM() {
+  await base.loadMore();  // the child and old body shapes (refit when they arrived)
+  const fullSkin = document.createElement("canvas"); fullSkin.width = fullSkin.height = 2048;
+  await paintSkin(fullSkin, "textures/");
   const items = [...worn.entries()];
   const { heads, tails } = fitRig(base.rig, current);
   const matrices = tPose(base.rig, heads, tails);
@@ -644,7 +659,7 @@ async function exportVRM() {
   const visibleIds = [...new Set(bodySource)];  // body vertices in the export (not helpers), for collider sizing
   const meshes = [{ name: "body", positions: bodyPos, normals: smoothNormals(bodyPos, bodySource, indices), source: bodySource,
     uv: base.body.uv, indices, joints: base.joints, weights: base.weights, morphs: base.faceShapes,
-    image: await encodeImage(skinCanvas, { jpeg: true }), alpha: "OPAQUE", doubleSided: false }];
+    image: await encodeImage(fullSkin, { jpeg: true }), alpha: "OPAQUE", doubleSided: false }];
   let springs = null;
   for (const [slot, e] of items) {
     const it = e.item;
@@ -714,7 +729,7 @@ async function applyRecipe(next) {
   // Items that stayed on (same hair style as before) still take the new hair color.
   for (const slot of Object.keys(HAIR_SLOTS)) { const e = worn.get(slot); if (e) recolor(e, slot); }
   scheduleSkin();
-  const eyes = worn.get("eyes"); if (eyes) await setItemTexture(eyes, A + "textures/" + index.eyeColors[recipe.eyes], "eyes");
+  const eyes = worn.get("eyes"); if (eyes) await setItemTexture(eyes, index.eyeColors[recipe.eyes], "eyes");
 }
 $("open").addEventListener("click", () => $("file").click());
 $("file").addEventListener("change", async (e) => {
@@ -731,6 +746,8 @@ for (const slot of ALWAYS) {
 }
 await applyRecipe(recipe);
 $("loading").remove();
+setCamera(lastCamera);  // framing for the view's real shape (known now)
+base.loadMore().then(refit, () => {});  // the child and old body shapes: the body may change when they arrive
 renderPresets().catch(() => $("start").remove());
 window.avatarEditor = { exportVRM, applyRecipe, camera, controls, scene, avatar, showPreview, endPreview, get preview() { return preview; }, get recipe() { return recipe; } };  // for tests
 

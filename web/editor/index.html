@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>VRM Avatar Maker</title>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -50,10 +50,36 @@
   #expr-row { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
   #expr-row select { flex: 1; background: #2a2c31; color: var(--fg); border: 1px solid var(--line); border-radius: 6px; padding: 4px; }
   #loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); }
+  #panel-fixlink { display: none; margin: 14px 0 4px; text-align: center; color: var(--muted); font-size: 12px; }
+  @media (pointer: coarse) {  /* fingers: bigger targets */
+    .swatch { width: 34px; height: 34px; }
+    input[type=color] { width: 38px; height: 34px; }
+  }
+  /* Phones upright: the avatar above, the panel below, one row of buttons at the bottom. */
   @media (max-width: 700px) {
-    #app { flex-direction: column-reverse; }
-    #panel { width: 100%; height: 55%; padding-bottom: 110px; }
-    #bar { width: 100%; }
+    #app { flex-direction: column-reverse; height: 100dvh; }
+    #panel { width: 100%; height: 58%; padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+    #bar { width: 100%; grid-template-columns: 1fr auto auto; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); }
+    #bar input[type=text] { grid-column: auto; min-width: 0; }
+    #bar button { padding: 8px 12px; }
+    #fixlink { display: none; }
+    #panel-fixlink { display: block; }
+    #camera { right: 8px; top: 8px; gap: 4px; }
+    #camera #poses { gap: 4px; margin-right: 4px; }
+    #camera button { padding: 4px 8px; font-size: 13px; }
+    #status { left: 8px; bottom: 6px; font-size: 11px; }
+    input[type=text] { font-size: 16px; }  /* smaller text makes iPhones zoom in on focus */
+  }
+  /* Phones sideways: side by side again, with a narrower panel and a compact bar. */
+  @media (max-height: 500px) and (orientation: landscape) {
+    #app { flex-direction: row; height: 100dvh; }
+    #panel { width: 300px; height: 100%; padding-bottom: calc(96px + env(safe-area-inset-bottom)); padding-left: max(14px, env(safe-area-inset-left)); }
+    #bar { width: 300px; grid-template-columns: 1fr 1fr; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
+    #bar input[type=text] { grid-column: 1 / -1; font-size: 16px; }
+    #bar button { padding: 7px; }
+    #fixlink { display: none; }
+    #panel-fixlink { display: block; }
+    h1 { margin: 2px 0 6px; }
   }
 </style>
 <script type="importmap">
@@ -140,6 +166,7 @@
       <div id="expr-row"><select id="expr"><option value="">Neutral</option></select>
         <label><input type="checkbox" id="live"> Blink and talk</label></div>
     </details>
+    <a id="panel-fixlink" href="../fix/" target="_blank">Avatar from elsewhere too big? Fix my VRM</a>
   </div>
   <div id="view">
     <div id="loading">Loading…</div>

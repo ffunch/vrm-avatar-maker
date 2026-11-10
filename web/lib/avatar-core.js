@@ -62,7 +62,8 @@ export async function loadBase(A) {
   const N = baseInfo.vertexCount;
   for (const [bin, info] of [[baseBin, baseInfo], [macroBin, macroInfo], [skinBin, rig], [faceBin, faceInfo], [modBin, modInfo]]) unplane(bin, info.layout);
   const targets = {};
-  for (const name of Object.keys(macroInfo.targets)) targets[name] = sparseTarget(macroBin, macroInfo.layout, name);
+  for (const name of Object.keys(macroInfo.targets))
+    if (macroInfo.layout[name + ":g"]) targets[name] = sparseTarget(macroBin, macroInfo.layout, name);
   for (const name of Object.keys(modInfo.targets)) targets[name] = sparseTarget(modBin, modInfo.layout, name);
   // Face shapes as dense per-base-vertex offsets in meters (the face isn't moved by the T-pose).
   const faceShapes = {};
@@ -72,8 +73,16 @@ export async function loadBase(A) {
     for (let i = 0; i < idx.length; i++) for (let k = 0; k < 3; k++) dense[idx[i] * 3 + k] = d[i * 3 + k] * s;
     faceShapes[name] = dense;
   }
+  // The child and old macro targets are a second file (macros.json "more"), fetched by loadMore() once the
+  // first picture is up, so they don't compete with it. Until then the body uses the young-adult ones.
+  let more = null;
+  const loadMore = () => more ??= macroInfo.more ? fetchBin(A + macroInfo.more.file).then((bin) => {
+    unplane(bin, macroInfo.more.layout);
+    for (const name of Object.keys(macroInfo.targets))
+      if (macroInfo.more.layout[name + ":g"]) targets[name] = sparseTarget(bin, macroInfo.more.layout, name);
+  }).catch((err) => { more = null; throw err; }) : Promise.resolve();  // a failure is tried again next time
   return {
-    A, N, index, rig, targets, faceShapes, modifiers: modInfo.modifiers, expressions: faceInfo.expressions, unitsPerMeter: baseInfo.unitsPerMeter,
+    A, N, index, rig, targets, loadMore, faceShapes, modifiers: modInfo.modifiers, expressions: faceInfo.expressions, unitsPerMeter: baseInfo.unitsPerMeter,
     macro: macroInfo.macro, quant: macroInfo.quant,
     rest: view(baseBin, baseInfo.layout.positions),
     body: { source: view(baseBin, baseInfo.layout.source), uv: view(baseBin, baseInfo.layout.uv), indices: view(baseBin, baseInfo.layout.indices) },

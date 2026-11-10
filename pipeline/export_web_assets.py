@@ -9,7 +9,8 @@ Writes web/assets/ (gitignored, regenerate with this script):
   items/<name>.json + .bin worn assets (.mhclo): render mesh + the fitting data (3 base vertices,
                            3 weights, an offset per vertex, and the x/y/z scale references), plus
                            the body vertices it hides (delete_verts)
-  textures/                diffuse textures: JPEG (opaque) or WebP with alpha (cut-outs, 1024 px)
+  textures/                diffuse textures: JPEG (opaque) or WebP with alpha (cut-outs, 1024 px);
+                           textures/view/ the same at most 1024 px, for the editor's 3D view
   thumbs/                  128 px WebP item thumbnails, small eye-color swatches
   All .bin files are written gzipped (.bin.gz) and unpacked in the browser (avatar-core.js fetchBin).
   faces.json + faces.bin   the face shapes our VRM expressions use (pipeline/expressions.json): MPFB
@@ -205,15 +206,20 @@ def export_macros():
     # No "baby" targets: the editor's age slider starts at 11 years, where they always weigh 0.
     names = sorted(name[:-len(".target.gz")] for name in os.listdir(folder)
                    if name.endswith(".target.gz") and "baby" not in name)
-    chunks, index = [], {}
+    # Two files, so the first picture comes sooner: macros.bin has the young-adult targets (all a 25-year-old
+    # needs), macros-more.bin the child and old ones, which the editor loads after the first picture.
+    chunks, more, index = [], [], {}
     for name in names:
         rows = sorted(read_target(os.path.join(folder, name + ".target.gz")))
-        chunks += target_chunks(name, rows)
+        (chunks if "-young" in name else more).extend(target_chunks(name, rows))
         index[name] = len(rows)
     layout = write_bin(os.path.join(OUT, "macros.bin"), chunks)
+    more_layout = write_bin(os.path.join(OUT, "macros-more.bin"), more)
     config = json.load(open(os.path.join(folder, "macro.json")))
-    json.dump({"targets": index, "layout": layout, "quant": QUANT, "macro": config}, open(os.path.join(OUT, "macros.json"), "w"))
-    print("macros", len(names), "targets,", os.path.getsize(os.path.join(OUT, "macros.bin.gz")) // 1024, "KB")
+    json.dump({"targets": index, "layout": layout, "more": {"file": "macros-more.bin", "layout": more_layout},
+               "quant": QUANT, "macro": config}, open(os.path.join(OUT, "macros.json"), "w"))
+    print("macros", len(names), "targets,", os.path.getsize(os.path.join(OUT, "macros.bin.gz")) // 1024, "KB +",
+          os.path.getsize(os.path.join(OUT, "macros-more.bin.gz")) // 1024, "KB later")
 
 
 def export_modifiers():
@@ -327,6 +333,26 @@ def convert_texture(source, target_base, opaque, max_size=2048):
     return target
 
 
+VIEW_SIZE = 1024  # px: the editor's 3D view uses textures/view/ (at most this size); downloads use textures/
+
+
+def make_view_textures():
+    """textures/view/: a copy of every texture for the editor's view, opaque ones over VIEW_SIZE scaled
+    down (about a third of the bytes). The VRM export still reads the full textures/."""
+    folder, view = os.path.join(OUT, "textures"), os.path.join(OUT, "textures", "view")
+    shutil.rmtree(view, ignore_errors=True)
+    os.makedirs(view)
+    for name in sorted(os.listdir(folder)):
+        source = os.path.join(folder, name)
+        if os.path.isdir(source):
+            continue
+        if name.endswith(".jpg") and image_size(source) > VIEW_SIZE:
+            subprocess.run(["sips", "-s", "formatOptions", "82", "-Z", str(VIEW_SIZE), source, "--out",
+                            os.path.join(view, name)], check=True, capture_output=True)
+        else:
+            shutil.copyfile(source, os.path.join(view, name))
+
+
 def thumbnail(source, target):
     """A 128 px WebP thumbnail."""
     subprocess.run(["cwebp", "-quiet", "-q", "80", "-resize", "128", "0", source, "-o", target], check=True, capture_output=True)
@@ -424,7 +450,8 @@ if __name__ == "__main__":
         os.makedirs(os.path.join(OUT, sub), exist_ok=True)
     for sub in ("thumbs", "textures", "items"):  # start clean: formats change (PNG -> WebP, .bin -> .bin.gz)
         for old in os.listdir(os.path.join(OUT, sub)):
-            os.remove(os.path.join(OUT, sub, old))
+            if os.path.isfile(os.path.join(OUT, sub, old)):  # (textures/view/ is remade at the end)
+                os.remove(os.path.join(OUT, sub, old))
     catalog = json.load(open(os.path.join(REPO, "pipeline", "catalog.json")))
     export_rig(export_base())
     export_macros()
@@ -462,6 +489,7 @@ if __name__ == "__main__":
     index["masks"] = sorted(f for f in os.listdir(masks) if f.startswith("mask_")) if os.path.isdir(masks) else []
     if not index["masks"]:
         print("MISSING makeup masks (run pipeline/make_parts.sh)")
+    make_view_textures()
     json.dump(index, open(os.path.join(OUT, "index.json"), "w"), indent=1)
     print("wrote", os.path.normpath(OUT), "-", sum(len(c["items"]) for c in index["categories"].values()), "catalog items,",
           len(index["skins"]), "skins,", len(index["eyeColors"]), "eye colors")
