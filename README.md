@@ -22,7 +22,10 @@ chair. Any app that reads VRM 1.0 can use them.
   ee, oh), emotions, eyes that look at a target, and hair that sways (spring bones).
 - **Editable again.** The recipe is stored inside the VRM, so opening it in the maker brings back
   every choice.
-- **Ready-made avatars** to start from, and a live preview, seated or standing.
+- **Ready-made avatars** to start from, **Surprise me** for a random person in one of their outfits,
+  and a live preview, seated or standing.
+- **Share links.** "Copy link" gives a link that opens your avatar in the maker (the choices travel
+  after the `#`, so they never reach a server).
 - **Fix my VRM** (`/fix/`): shrinks any VRM 0.x or 1.0 that's over the budget (drops unused
   materials, merges look-alikes into an atlas, scales textures, simplifies meshes). It respects the
   VRM's own license: files that forbid changes are refused.

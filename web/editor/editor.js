@@ -221,8 +221,10 @@ async function setSlot(slot, id) {
 }
 const slotId = (slot) => slot === "hair" ? recipe.hair.style : slot === "eyes" ? "low-poly" : ALWAYS.includes(slot) ? slot : recipe[slot];
 
+let visibleBody = null;  // body triangles not covered by what's worn (before tucking into boots)
 function updateBodyIndices() {
-  bodyGeom.setIndex(new THREE.BufferAttribute(visibleBodyIndices(base, [...worn.values()].map((e) => e.item)), 1));
+  visibleBody = visibleBodyIndices(base, [...worn.values()].map((e) => e.item));
+  bodyGeom.setIndex(new THREE.BufferAttribute(visibleBody, 1));
   updateStatus();
 }
 
@@ -248,6 +250,13 @@ function refit() {
     if (INFLATE[slot]) inflate(entry, INFLATE[slot]);
   }
   if (worn.has("top") && worn.has("bottom")) tuck(worn.get("bottom"), worn.get("top"));
+  let tucked = null;
+  for (const slot of ["bottom", "outfit"]) {  // trousers go into tall boots (never skirts, dresses or robes)
+    const e = worn.get(slot);
+    if (e && worn.has("shoes") && !index.categories[slot]?.items.find((i) => i.id === e.item.id)?.skirt)
+      tucked = tuckIntoBoots(e, worn.get("shoes"), normals) ?? tucked;
+  }
+  hideSkinInBoots(tucked);
   hatHair(worn.get("hair"), worn.get("hat"));
   for (const entry of worn.values()) {
     const p = entry.mesh.geometry.attributes.position.array, src = entry.item.source;
@@ -328,6 +337,79 @@ function tuck(bottom, top) {
     const t = Math.min(1, Math.max(0, (f[v * 3 + 1] - hem) / 0.15));
     if (t > 0) for (let k = 0; k < 3; k++) f[v * 3 + k] -= n[v * 3 + k] * 0.1 * t * t * (3 - 2 * t);
   }
+}
+
+// Trousers into tall boots, as people wear them. Each leg on its own: the trouser leg is laid onto the
+// skin from a little above the boot's top down, easing back out above it. Deeper inside the boot it sits
+// just under the skin (hidden there anyway), so no boot is ever tighter, and it still fills any slit in
+// the boot as the leg would. Ankle boots (top under BOOT_TALL) stay under the trouser hem as they are.
+const BOOT_TALL = 2.2;  // decimeters above the sole
+let legSkin = null;     // body vertices of the visible mesh (fixed for the base mesh)
+function tuckIntoBoots(garment, boots, normals) {
+  const b = boots.fitted, f = garment.fitted;
+  let lowest = Infinity;
+  for (let i = 1; i < b.length; i += 3) lowest = Math.min(lowest, b[i]);
+  const top = [-Infinity, -Infinity];  // per leg: x < 0, x >= 0
+  for (let i = 0; i < b.length; i += 3) { const s = b[i] < 0 ? 0 : 1; top[s] = Math.max(top[s], b[i + 1]); }
+  if (Math.max(top[0], top[1]) - lowest < BOOT_TALL) return null;
+  // Only legs whose trousers reach into the boot (shorts with tall boots keep their bare knees).
+  const reaches = [false, false];
+  for (let i = 0; i < f.length; i += 3) { const s = f[i] < 0 ? 0 : 1; if (f[i + 1] < top[s]) reaches[s] = true; }
+  if (!reaches[0]) top[0] = -Infinity;
+  if (!reaches[1]) top[1] = -Infinity;
+  if (!reaches[0] && !reaches[1]) return null;
+  const ABOVE = 0.7, FULL = 0.2, DEEP = 0.3, CELL = 0.8, OFF = 0.06, UNDER = -0.15;  // CELL: baggy hems reach far from the leg
+  legSkin ??= [...new Set(bodySource)];
+  const grid = new Map(), key = (x, y, z) => `${x},${y},${z}`, cell = (v) => Math.floor(v / CELL);
+  const reach = Math.max(top[0], top[1]) + ABOVE + CELL;
+  for (const v of legSkin) {
+    const y = current[v * 3 + 1];
+    if (y > reach) continue;
+    const k = key(cell(current[v * 3]), cell(y), cell(current[v * 3 + 2]));
+    if (!grid.has(k)) grid.set(k, []);
+    grid.get(k).push(v);
+  }
+  for (let i = 0; i < f.length; i += 3) {
+    const x = f[i], y = f[i + 1], z = f[i + 2], side = x < 0 ? 0 : 1, t = top[side];
+    if (y > t + ABOVE) continue;
+    let best = -1, bestD = Infinity;
+    const cx = cell(x), cy = cell(y), cz = cell(z);
+    for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) for (let dz = -1; dz <= 1; dz++) {
+      for (const v of grid.get(key(cx + dx, cy + dy, cz + dz)) ?? []) {
+        if ((current[v * 3] < 0 ? 0 : 1) !== side) continue;  // this leg's skin only
+        const d = (current[v * 3] - x) ** 2 + (current[v * 3 + 1] - y) ** 2 + (current[v * 3 + 2] - z) ** 2;
+        if (d < bestD) { bestD = d; best = v; }
+      }
+    }
+    if (best < 0) continue;
+    // Fully in up to a little above the rim (long trouser triangles then can't cut through the boot's
+    // wall), easing out above.
+    const w0 = y <= t + FULL ? 1 : 1 - (y - t - FULL) / (ABOVE - FULL), w = w0 * w0 * (3 - 2 * w0);
+    const off = y < t - DEEP ? UNDER  // deep in the boot
+      : OFF + 0.12 * Math.min(1, Math.max(0, (y - t + 0.2) / 0.6));  // looser up toward the knee: no skin showing through
+    for (let k = 0; k < 3; k++) f[i + k] += (current[best * 3 + k] + normals[best * 3 + k] * off - f[i + k]) * w;
+  }
+  return top.map((t) => t + ABOVE);  // per leg: skin below this is covered by trousers and boot
+}
+
+// Skin inside tucked trousers and boots isn't drawn (or exported): coarse trousers laid onto the leg
+// would otherwise let it poke through between their corners.
+function hideSkinInBoots(below) {
+  if (!visibleBody) return;
+  let indices = visibleBody;
+  if (below) {
+    const keep = [];
+    for (let t = 0; t < visibleBody.length; t += 3) {
+      let inside = true;
+      for (let c = 0; c < 3 && inside; c++) {
+        const v = bodySource[visibleBody[t + c]];
+        inside = current[v * 3 + 1] < below[current[v * 3] < 0 ? 0 : 1];
+      }
+      if (!inside) keep.push(visibleBody[t], visibleBody[t + 1], visibleBody[t + 2]);
+    }
+    indices = Uint32Array.from(keep);
+  }
+  if (bodyGeom.index.array !== indices) { bodyGeom.setIndex(new THREE.BufferAttribute(indices, 1)); updateStatus(); }
 }
 
 // Push clothes off the body along their own normals.
@@ -479,8 +561,10 @@ function renderTiles(cat) {
   showThumbs(box);
 }
 // Ready-made avatars (assets/presets/): click one to start from it. Thumbnails load when the section opens.
+let presetList = null;
+const loadPresets = async () => presetList ??= (await fetchRetry(A + "presets/presets.json").then((r) => r.json())).presets;
 async function renderPresets() {
-  const { presets } = await fetchRetry(A + "presets/presets.json").then((r) => r.json());
+  const presets = await loadPresets();
   const box = $("presets");
   box.replaceChildren(...presets.map((p) => tile(p.label, `${A}presets/${p.id}.webp`, false, () => {
     endPreview();
@@ -565,6 +649,94 @@ function setSkinColor(color, keepSwatches) {
 }
 
 // Face-shape sliders, built from pipeline/modifiers.json.
+// ---- Surprise me -------------------------------------------------------------------------------
+// A random person in a ready-made avatar's clothes (so the outfit hangs together, costumes included):
+// a new body, age, ancestry mix with a matching skin tone, eyes, hair, sometimes a beard, glasses or
+// makeup, and a little face shaping. Fantasy skin and hair colors stay with the costumes that have them.
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = (list) => list[Math.floor(Math.random() * list.length)];
+const chance = (p) => Math.random() < p;
+async function surprise() {
+  const presets = await loadPresets();
+  const male = chance(0.5);
+  const sameSex = (p) => (p.recipe.body?.gender ?? 1) > 0.5 === male;
+  const style = structuredClone(pick(presets.filter(sameSex)).recipe);
+  const r = { ...style, name: recipe.name, face: {} };
+  const age = chance(0.75) ? rand(0.38, 0.7) : rand(0.7, 0.9);  // mostly 20 to 50, some to about 77
+  const main = pick(RACES), race = { african: 0, asian: 0, caucasian: 0 };
+  race[main] = rand(0.6, 1);
+  for (const other of RACES.filter((x) => x !== main)) race[other] = rand(0, 1 - race[main]);
+  r.body = { gender: male ? rand(0.75, 1) : rand(0, 0.25), age, muscle: rand(0.25, 0.75), weight: rand(0.2, 0.8), race };
+  const sum = race.african + race.asian + race.caucasian;
+  const tone = Math.min(1, Math.max(0, (race.african * 0.9 + race.asian * 0.2) / sum + rand(-0.12, 0.12)));
+  r.skin = { tone, color: style.skin?.color ?? null };
+  const eyes = Object.keys(index.eyeColors);
+  r.eyes = tone > 0.4 || chance(0.5) ? pick(["brown", "brown", "brownlight", "green"]) : pick(eyes);
+  // Hair: half the time the outfit's own, otherwise one worn by someone of the same sex among the
+  // ready-made avatars; natural colors by age, unless the costume has a fantasy color.
+  const styles = [...new Set(presets.filter(sameSex).map((p) => p.recipe.hair?.style).filter((h) => h !== undefined))];
+  const naturalColor = age > 0.8 && chance(0.7) ? pick(["Grey", "White"]) : age > 0.65 && chance(0.4) ? "Grey"
+    : pick(Object.keys(HAIR_COLORS).filter((c) => c !== "Grey" && c !== "White"));
+  const fantasy = style.hair?.color && Object.values(FANTASY_HAIR).includes(style.hair.color);
+  r.hair = { style: chance(0.5) ? style.hair?.style ?? null : pick(styles), color: fantasy ? style.hair.color : HAIR_COLORS[naturalColor] };
+  r.eyebrows = pick(index.categories.eyebrows.items).id;
+  r.eyebrowHeight = Math.round(rand(0.3, 1.1) * 10) / 10;
+  if (male && !style.beard && !style.moustache && chance(0.4)) r.beard = pick(["paint_stubble", "paint_beard_short", "beard_goatee", "beard_short"]);
+  if (!male) { r.beard = null; r.moustache = null; }
+  const ordinaryGlasses = index.categories.glasses.items.map((i) => i.id).filter((id) => id.includes("glasses"));
+  if (!style.glasses && chance(0.18)) r.glasses = pick(ordinaryGlasses);
+  const makeup = structuredClone(DEFAULT_RECIPE.makeup);
+  if (!male && chance(0.55)) {
+    makeup.lips = { amount: rand(0.25, 0.6), color: pick(["#a8323e", "#b5525a", "#8c3b4a", "#c46a6a"]) };
+    if (chance(0.5)) makeup.eyeshadow = { amount: rand(0.2, 0.45), color: pick(["#7a5a8c", "#6b5a4a", "#4a5a7a", "#8a6a5a"]) };
+  }
+  for (const [k, v] of Object.entries(style.makeup ?? {})) if (v.amount > 0) makeup[k] = v;  // a costume's own makeup wins
+  r.makeup = makeup;
+  for (const m of [...base.modifiers].sort(() => Math.random() - 0.5).slice(0, 5))
+    r.face[m.id] = Math.round((m.decr ? rand(-0.4, 0.4) : rand(0, 0.4)) * 100) / 100;
+  endPreview();
+  await applyRecipe(r);
+}
+$("surprise").addEventListener("click", () => surprise().catch((err) => { $("status").textContent = err.message; }));
+
+// ---- Share link ------------------------------------------------------------------------------
+// The recipe goes after the # (never sent to a server), deflated and base64url: opening the link
+// rebuilds the avatar. Unknown item ids (from an older or newer catalog) fall back to the defaults.
+async function recipeLink() {
+  const bytes = new TextEncoder().encode(JSON.stringify(recipe));
+  const packed = new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(new CompressionStream("deflate-raw"))).arrayBuffer());
+  let bin = ""; for (const b of packed) bin += String.fromCharCode(b);
+  const code = btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  return `${location.origin}${location.pathname}#r=${code}`;
+}
+async function recipeFromLink(hash) {
+  const code = hash.match(/^#r=([A-Za-z0-9_-]+)$/)?.[1];
+  if (!code) return null;
+  const bin = atob(code.replace(/-/g, "+").replace(/_/g, "/"));
+  const packed = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+  const text = await new Response(new Blob([packed]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text();
+  const found = JSON.parse(text);
+  if (!found || typeof found !== "object") return null;
+  for (const slot of ITEM_SLOTS) {  // only ids this catalog has
+    const id = slot === "hair" ? found.hair?.style : found[slot];
+    if (id && !index.categories[slot]?.items.some((i) => i.id === id)) {
+      if (slot === "hair") found.hair.style = DEFAULT_RECIPE.hair.style; else found[slot] = DEFAULT_RECIPE[slot];
+    }
+  }
+  if (found.eyes && !(found.eyes in index.eyeColors)) found.eyes = DEFAULT_RECIPE.eyes;
+  return found;
+}
+$("share").addEventListener("click", async () => {
+  try {
+    const link = await recipeLink();
+    history.replaceState(null, "", link);
+    if (navigator.share && matchMedia("(pointer: coarse)").matches) await navigator.share({ title: recipe.name || "My avatar", url: link });
+    else { await navigator.clipboard.writeText(link); $("status").textContent = "Link copied: it opens this avatar in the maker."; }
+  } catch (err) {
+    if (err.name !== "AbortError") $("status").textContent = "Couldn't copy the link; it's in the address bar now.";
+  }
+});
+
 function buildFaceSliders() {
   const box = $("face-shape"); box.replaceChildren();
   let group = null;
@@ -744,12 +916,13 @@ for (const slot of ALWAYS) {
   const entry = await makeWorn(slot === "eyes" ? "low-poly" : slot, slot);
   worn.set(slot, entry); avatar.add(entry.mesh);
 }
-await applyRecipe(recipe);
+const linked = await recipeFromLink(location.hash).catch(() => null);
+await applyRecipe(linked ?? recipe);
 $("loading").remove();
 setCamera(lastCamera);  // framing for the view's real shape (known now)
 base.loadMore().then(refit, () => {});  // the child and old body shapes: the body may change when they arrive
 renderPresets().catch(() => $("start").remove());
-window.avatarEditor = { exportVRM, applyRecipe, camera, controls, scene, avatar, showPreview, endPreview, get preview() { return preview; }, get recipe() { return recipe; } };  // for tests
+window.avatarEditor = { exportVRM, applyRecipe, camera, controls, scene, avatar, renderer, showPreview, endPreview, get preview() { return preview; }, get recipe() { return recipe; } };  // for tests
 
 // ---- Live preview ----------------------------------------------------------------------------
 // Preview shows the exported VRM in three-vrm (lib/preview.js, loaded on first use). Changing
