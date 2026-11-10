@@ -70,13 +70,15 @@
     #status { left: 8px; bottom: 6px; font-size: 11px; }
     input[type=text] { font-size: 16px; }  /* smaller text makes iPhones zoom in on focus */
   }
-  /* Phones sideways: side by side again, with a narrower panel and a compact bar. */
+  /* Phones sideways: side by side, the panel taking most of the width (the avatar needs little), and
+     name and buttons in one row. */
   @media (max-height: 500px) and (orientation: landscape) {
     #app { flex-direction: row; height: 100dvh; }
-    #panel { width: 300px; height: 100%; padding-bottom: calc(96px + env(safe-area-inset-bottom)); padding-left: max(14px, env(safe-area-inset-left)); }
-    #bar { width: 300px; grid-template-columns: 1fr 1fr; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
-    #bar input[type=text] { grid-column: 1 / -1; font-size: 16px; }
-    #bar button { padding: 7px; }
+    #panel { width: min(58%, 520px); height: 100%; padding-bottom: calc(60px + env(safe-area-inset-bottom)); padding-left: max(14px, env(safe-area-inset-left)); }
+    #bar { width: min(58%, 520px); grid-template-columns: 1fr auto auto; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
+    #bar input[type=text] { grid-column: auto; min-width: 0; font-size: 16px; }
+    #bar button { padding: 7px 12px; }
+    .tiles { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); }
     #fixlink { display: none; }
     #panel-fixlink { display: block; }
     h1 { margin: 2px 0 6px; }
