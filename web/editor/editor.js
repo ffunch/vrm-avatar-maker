@@ -875,7 +875,7 @@ function readRecipe(buffer) {
   if (dv.getUint32(0, true) !== 0x46546c67) throw new Error("Not a VRM/GLB file");
   const json = JSON.parse(new TextDecoder().decode(new Uint8Array(buffer, 20, dv.getUint32(12, true))));
   const found = json.asset?.extras?.avatarEditorRecipe;
-  if (!found) throw new Error("This VRM wasn't made with this editor, so it can't be edited here. Too big for So Many Rooms? Try Fix my VRM (link below).");
+  if (!found) throw new Error("This avatar was made with another tool. Only avatars made here can be reopened for editing; yours can still be used as it is. (Fix my VRM, linked below, only matters if it's over So Many Rooms' size limits.)");
   if (found.editor === "AvatarEditor") return found;
   // A Blender-pipeline recipe (pipeline/recipes/): carry over the body; parts use defaults.
   return { ...structuredClone(DEFAULT_RECIPE), name: found.name ?? "", body: { ...DEFAULT_RECIPE.body, ...found.body } };
