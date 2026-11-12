@@ -24,6 +24,8 @@ chair. Any app that reads VRM 1.0 can use them.
   every choice.
 - **Ready-made avatars** to start from, **Surprise me** for a random person in one of their outfits,
   and a live preview, seated or standing.
+- **Plain GLB too.** "Download as GLB" gives the same avatar without the VRM extensions, for Blender,
+  game engines and 3D viewers that don't read VRM (bones, skin and face shapes are kept).
 - **Share links.** "Copy link" gives a link that opens your avatar in the maker (the choices travel
   after the `#`, so they never reach a server).
 - **Fix my VRM** (`/fix/`): shrinks any VRM 0.x or 1.0 that's over the budget (drops unused

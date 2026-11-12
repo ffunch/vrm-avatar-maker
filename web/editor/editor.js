@@ -788,7 +788,7 @@ function updateStatus() {
   const over = total > MAX_TRIANGLES;
   $("status").innerHTML = `<span class="${over ? "bad" : ""}">${total.toLocaleString()} triangles</span> of ${MAX_TRIANGLES.toLocaleString()} allowed` +
     (over ? " — too many for So Many Rooms; pick lighter hair, beard or clothes" : "");
-  $("download").disabled = over;
+  for (const b of downloadButtons()) b.disabled = over;
   return total;
 }
 
@@ -860,15 +860,38 @@ async function exportVRM() {
     springBone: springs ? springBoneExtension(bones, springs.springBone) : null });
 }
 
-$("download").addEventListener("click", async () => {
-  $("download").disabled = true; $("download").textContent = "Building…";
+// The VRM with its VRMC_* extensions removed: plain glTF for tools that don't read VRM. Bones, skin,
+// morph targets (named in extras.targetNames) and materials stay; the recipe stays too, so it reopens here.
+function plainGLB(vrm) {
+  const dv = new DataView(vrm), jsonLen = dv.getUint32(12, true);
+  const json = JSON.parse(new TextDecoder().decode(new Uint8Array(vrm, 20, jsonLen)));
+  for (const k of Object.keys(json.extensions ?? {})) if (k.startsWith("VRMC_")) delete json.extensions[k];
+  if (json.extensions && !Object.keys(json.extensions).length) delete json.extensions;
+  json.extensionsUsed = (json.extensionsUsed ?? []).filter((k) => !k.startsWith("VRMC_"));
+  if (!json.extensionsUsed.length) delete json.extensionsUsed;
+  const bytes = new TextEncoder().encode(JSON.stringify(json)), padded = (bytes.length + 3) & ~3;
+  const bin = new Uint8Array(vrm, 20 + jsonLen), out = new Uint8Array(20 + padded + bin.length);
+  const odv = new DataView(out.buffer);
+  odv.setUint32(0, 0x46546c67, true); odv.setUint32(4, 2, true); odv.setUint32(8, out.length, true);
+  odv.setUint32(12, padded, true); odv.setUint32(16, 0x4e4f534a, true);
+  out.set(bytes, 20); out.fill(0x20, 20 + bytes.length, 20 + padded); out.set(bin, 20 + padded);
+  return out.buffer;
+}
+function downloadButtons() { return ["download", "download-glb", "panel-glb"].map((id) => $(id)); }
+async function download(asGLB, button) {
+  const label = button.textContent;
+  for (const b of downloadButtons()) b.disabled = true;
+  button.textContent = "Building…";
   try {
-    const url = URL.createObjectURL(new Blob([await exportVRM()], { type: "model/gltf-binary" }));
+    const vrm = await exportVRM();
+    const url = URL.createObjectURL(new Blob([asGLB ? plainGLB(vrm) : vrm], { type: "model/gltf-binary" }));
     const file = (recipe.name || "avatar").replace(/[^\w-]+/g, "-").replace(/^-|-$/g, "") || "avatar";
-    Object.assign(document.createElement("a"), { href: url, download: file + ".vrm" }).click();
+    Object.assign(document.createElement("a"), { href: url, download: file + (asGLB ? ".glb" : ".vrm") }).click();
     setTimeout(() => URL.revokeObjectURL(url), 10000);
-  } finally { $("download").textContent = "Download VRM"; updateStatus(); }
-});
+  } finally { button.textContent = label; updateStatus(); }
+}
+$("download").addEventListener("click", () => download(false, $("download")));
+for (const id of ["download-glb", "panel-glb"]) $(id).addEventListener("click", () => download(true, $(id)));
 
 function readRecipe(buffer) {
   const dv = new DataView(buffer);
