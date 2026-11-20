@@ -27,7 +27,9 @@ chair. Any app that reads VRM 1.0 can use them.
   are set to resemble it (a resemblance, not a likeness). It runs in the browser with Google's
   MediaPipe face and hair finders; nothing is uploaded.
 - **Ready-made avatars** to start from, **Surprise me** for a random person in one of their outfits,
-  and a live preview, seated or standing.
+  and a live preview, seated or standing. The preview can also play walk, run and jump motions to
+  check the character while moving; these motions are not included in the downloaded avatar.
+
 - **Plain GLB too.** "Download as GLB" gives the same avatar without the VRM extensions, for Blender,
   game engines and 3D viewers that don't read VRM (bones, skin and face shapes are kept).
 - **Straight to your site** (avatar handoff). A site can open the maker in a popup, hand it the
@@ -39,6 +41,8 @@ chair. Any app that reads VRM 1.0 can use them.
   materials, merges look-alikes into an atlas, scales textures, simplifies meshes). It respects the
   VRM's own license: files that forbid changes are refused.
 - **Private.** Everything runs in your browser. Nothing is uploaded.
+
+![Walk, run and jump motion previews](docs/motion-preview.jpg)
 
 ## Run it locally
 
@@ -55,6 +59,9 @@ https or localhost; the certificate is self-signed, so accept the warning once).
 without the asset pipeline. three.js, three-vrm, meshoptimizer and MediaPipe Tasks Vision (with its
 face and hair models, loaded only for "From a photo") are vendored in `web/vendor/`; there is no build step
 and no outside requests.
+
+The optional motion preview uses selected clips from Quaternius's 2025 Universal Animation Library
+(CC0). The source snapshot and attribution are recorded in `web/vendor/quaternius-motion-2025/README.md`.
 
 ## The asset pipeline
 

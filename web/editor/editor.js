@@ -52,11 +52,22 @@ const controls = new OrbitControls(camera, renderer.domElement);
 let faceHeight = 1.6;  // meters above the floor, updated on refit
 let lastCamera = "body";
 let preview = null, previewing = false, previewSeated = true, previewJob = 0;  // live preview (see below)
+let selectedMotion = null, motionBusy = false;
+const motionButtons = [...document.querySelectorAll("#motion-controls button")];
+function syncMotionButtons() {
+  for (const button of motionButtons) {
+    button.setAttribute("aria-pressed", String((selectedMotion ?? "stand") === button.dataset.motion));
+    button.disabled = motionBusy;
+  }
+}
+function syncPoseButtons() {
+  document.querySelectorAll("#poses button").forEach((button) => button.classList.toggle("on", button.dataset.pose === (previewSeated ? "seated" : "standing")));
+}
 function setCamera(which) {
   lastCamera = which;
   const head = previewing ? preview.head() : null;  // the preview may be seated: aim at its real head
   const fh = head ? head.y + 0.06 : faceHeight, fz = head ? head.z : 0;
-  const k = camera.aspect < 1.2 ? 1.2 : 1;  // a narrow view (phone upright): a little farther, so the head clears the buttons
+  const k = matchMedia("(max-width: 700px), (max-height: 500px) and (orientation: landscape)").matches ? 1.35 : 1.2;
   const [pos, target] = which === "face" ? [[0.25, fh + 0.04, fz + 0.95], [0, fh, fz]] : [[0.9 * k, 1.25, 3.4 * k], [0, 0.95, 0]];
   camera.position.set(...pos); controls.target.set(...target); controls.update();
 }
@@ -1435,9 +1446,11 @@ async function showPreview() {
     const info = await preview.show(buffer, { seated: previewSeated });
     if (job !== previewJob) { preview.hide(); return; }
     previewing = true; avatar.visible = false;
+    selectedMotion = null; syncMotionButtons();
+    syncPoseButtons();
     if (lastCamera === "face") setCamera("face");
     $("preview").classList.add("active"); $("poses").hidden = false;
-    $("status").textContent = `Preview of the download: ${info.springJoints ? "hair physics, " : ""}eyes follow you, blinking. Change anything to edit again.`;
+    $("status").textContent = `Downloaded avatar preview${info.springJoints ? " with hair physics" : ""}`;
   } catch (err) {
     $("status").textContent = "Preview failed: " + err.message;
   } finally {
@@ -1448,6 +1461,7 @@ function endPreview() {
   previewJob++;
   if (!previewing) return;
   previewing = false; preview?.hide(); avatar.visible = true;
+  selectedMotion = null; syncMotionButtons();
   $("preview").classList.remove("active"); $("poses").hidden = true;
   if (lastCamera === "face") setCamera("face");
   updateStatus();
@@ -1455,9 +1469,26 @@ function endPreview() {
 $("preview").addEventListener("click", () => previewing ? endPreview() : showPreview());
 document.querySelectorAll("#poses button").forEach((b) => b.addEventListener("click", () => {
   previewSeated = b.dataset.pose === "seated";
-  document.querySelectorAll("#poses button").forEach((x) => x.classList.toggle("on", x === b));
+  syncPoseButtons();
   showPreview();
 }));
+for (const button of motionButtons) button.addEventListener("click", async () => {
+  if (motionBusy) return;
+  const name = button.dataset.motion === "stand" ? null : button.dataset.motion;
+  motionBusy = true; syncMotionButtons();
+  try {
+    if (!previewing || previewSeated) {
+      previewSeated = false;
+      await showPreview();
+    }
+    if (!previewing) return;
+    await preview.setMotion(name);
+    selectedMotion = name; syncMotionButtons();
+    $("status").textContent = `${button.textContent} preview`;
+  } catch (err) {
+    $("status").textContent = "Motion preview failed: " + err.message;
+  } finally { motionBusy = false; syncMotionButtons(); }
+});
 for (const type of ["input", "click"]) $("panel").addEventListener(type, (e) => {
   if (previewing && !e.target.closest("#expr-row, summary")) endPreview();
 }, true);
@@ -1467,7 +1498,10 @@ let last = performance.now();
 renderer.setAnimationLoop(() => {
   const now = performance.now(), dt = Math.min((now - last) / 1000, 0.05); last = now;
   if (previewing) {
-    preview.update(dt, { expression: exprSelect.value, talk: $("live").checked });
+    if (preview.update(dt, { expression: exprSelect.value, talk: $("live").checked })) {
+      selectedMotion = null; syncMotionButtons();
+      $("status").textContent = "Standing preview";
+    }
     controls.update();
     renderer.render(scene, camera);
     return;
